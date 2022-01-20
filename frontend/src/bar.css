@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fontawesome.com/v5.15/icons/play");
+html,
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.progress-bar {
+    position: fixed;
+    height: 10px;
+    width: 600px;
+    border-radius: 50px;
+    border: 1px solid #333;
+    bottom: 7%;
+    left: 6%;
+    background-color: white !important;
+    z-index: -10;
+}
+
+.filler {
+    background: #14274e;
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.2s ease-in;
+    z-index: 10;
+}
+
+button.bar {
+    margin-right: 10px;
+    padding: 3px 11px;
+    font-size: 14px;
+    background: #14274e;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    outline: 0;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+}
+
+#vids {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#vids a:first-of-type {
+    margin-bottom: 5px;
+    z-index: 10;
+}
+.progress-label {
+    position: fixed;
+    bottom: 2%;
+    left: 7.2%;
+    width: 600px;
+    font-size: 10px;
+    z-index: 10;
+}
+.progress-label .column {
+    display: flex;
+    float: left;
+    width: 25%;
+    /* padding: 10px; */
+    text-align: right;
+    border-right: solid;
+    border-width: 1px;
+    z-index: 10;
+    background-color: #14274e !important;
+    color: white;
+}
+.progress-label .row {
+    width: 600px;
+    z-index: 10;
+}
+
+/* Clear floats after the columns */
+.progress-label .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    z-index: 10;
+}
+/* ----------------------------------------------- */
+.progress-time {
+    position: fixed;
+    bottom: 4.7%;
+    left: 7.2%;
+    width: 600px;
+    font-size: 15px;
+    font-size: 5px;
+    z-index: 10;
+    background-color: #14274e !important;
+    color: white;
+}
+.progress-time .col {
+    display: flex;
+    float: left;
+
+    /* padding: 10px; */
+    text-align: right;
+    border-right: solid;
+    border-width: 1px;
+    z-index: 10;
+}
+.progress-time .row {
+    width: 400px;
+    z-index: 10;
+}
+/* Clear floats after the columns */
+.progress-time .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    z-index: 10;
+}
+.reset-btn {
+    position: relative;
+    left: 945%;
+    top: 90%;
+    bottom: 6%;
+    padding: 1px;
+    background: #14274e;
+    color: white;
+    font-size: 10px !important;
+    height: 20px !important;
+    width: 20px !important;
+    z-index: 10;
+}
+.bar_tooltip {
+    position: relative;
+    float: right;
+
+}
+.tooltip{
+    z-index: 10 !important;
+}
+/* tooltip----------------------- */
