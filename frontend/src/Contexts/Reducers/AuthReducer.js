@@ -9,7 +9,6 @@ const AuthReducer = (state, action) => {
 		case "LOAD_USER":
 			let tempUser = JSON.parse(localStorage.getItem("user"));
 			tempUser.username = action.payload.username;
-			tempUser.division = action.payload.division;
 			tempUser.roles = action.payload.roles;
 			tempUser.pfp = action.payload.pfp;
 			localStorage.setItem("user", JSON.stringify(tempUser));

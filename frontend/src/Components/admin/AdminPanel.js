@@ -70,8 +70,6 @@ const AdminPanel = () => {
 	const [user, setUser] = useState({
 		userid: "",
 		username: "",
-		range: "Gangtok",
-		division: "East Territorial",
 		designation: "RO",
 		pfp: "",
 	});
@@ -79,8 +77,6 @@ const AdminPanel = () => {
 		username: "",
 		password: "",
 		cpassword: "",
-		range: "Gangtok",
-		division: "East Territorial",
 		designation: "RO",
 		pfp: "",
 	});
@@ -591,7 +587,7 @@ const AdminPanel = () => {
 						<thead>
 							<tr className="table-secondary">
 								<th scope="col" className="text-center">
-									User ID
+									ID
 								</th>
 								{isMatch ? null : (
 									<th scope="col" className="text-center">
@@ -601,18 +597,8 @@ const AdminPanel = () => {
 								<th scope="col" className="text-center">
 									Username
 								</th>
-								{isMatch ? null : (
-									<>
-										<th scope="col" className="text-center">
-											Range
-										</th>
-										<th scope="col" className="text-center">
-											Division
-										</th>
-									</>
-								)}
 								<th scope="col" className="text-center">
-									Designation
+									Role
 								</th>
 								<th scope="col" className="text-center">
 									Operation
@@ -648,12 +634,6 @@ const AdminPanel = () => {
 											</td>
 										)}
 										<td className="text-center">{user.username}</td>
-										{isMatch ? null : (
-											<>
-												<td className="text-center">{user.range.name}</td>
-												<td className="text-center">{user.division.name}</td>
-											</>
-										)}
 										<td className="text-center">{user.designation}</td>
 										<td className="text-center">
 											<IconButton
@@ -727,36 +707,6 @@ const AdminPanel = () => {
 									onChange={handleAddChange}
 									placeholder="Confirm Password"
 								/>
-							</div>
-							<div class="form-group mt-2">
-								<label for="range">Range</label>
-								<select
-									type="text"
-									class="form-control"
-									id="range"
-									value={addUser.range}
-									onChange={handleAddRangeSelectChange}
-									required
-								>
-									{state.ranges.map((range) => (
-										<option value={range.name}>{range.name}</option>
-									))}
-								</select>
-							</div>
-							<div class="form-group mt-2">
-								<label for="division">Division</label>
-								<select
-									type="text"
-									class="form-control"
-									id="division"
-									value={addUser.division}
-									onChange={handleAddDivSelectChange}
-									required
-								>
-									{state.divisions.map((division) => (
-										<option value={division.name}>{division.name}</option>
-									))}
-								</select>
 							</div>
 							<div class="form-group mt-2">
 								<label for="designation">Designation</label>
@@ -846,39 +796,6 @@ const AdminPanel = () => {
 									onChange={handleClickChange}
 									disabled
 								/>
-							</div>
-							<div class="form-group mt-2">
-								<label for="range">Range </label>
-								<select
-									type="text"
-									class="form-control"
-									id="range"
-									value={user.range}
-									onChange={handleRangeSelectChange}
-									placeholder="Enter Range"
-								>
-									{state.ranges.map((range) => (
-										<option key={range.id} value={range.name}>
-											{range.name}
-										</option>
-									))}
-								</select>
-							</div>
-							<div class="form-group mt-2">
-								<label for="division">Division</label>
-								<select
-									type="text"
-									class="form-control"
-									id="division"
-									value={user.division}
-									onChange={handleDivisionSelectChange}
-								>
-									{state.divisions.map((division) => (
-										<option key={division.id} value={division.name}>
-											{division.name}
-										</option>
-									))}
-								</select>
 							</div>
 							<div class="form-group mt-2">
 								<label for="designation">Designation</label>

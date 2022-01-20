@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>ForestFireSimulation</artifactId>
+	<artifactId>ForestFirePrediction</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ForestFireSimulation</name>
-	<description>Forest Fire Simulation backend</description>
+	<name>ForestFirePrediction</name>
+	<description>Forest Fire Prediction Backend</description>
 	<properties>
 		<java.version>15</java.version>
 	</properties>

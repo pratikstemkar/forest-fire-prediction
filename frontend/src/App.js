@@ -58,7 +58,7 @@ function App() {
 						<Route path="/" element={<Landing />} />
 						<Route path="/login" element={<Login />} />
 						<Route
-							path="/dataentry-ro"
+							path="/dataentry"
 							element={
 								<PrivateRoute>
 									<DataEntryRO />
@@ -66,7 +66,7 @@ function App() {
 							}
 						/>
 						<Route
-							path="/dataentry-do"
+							path="/prediction"
 							element={
 								<PrivateRoute>
 									<DataEntryDO />

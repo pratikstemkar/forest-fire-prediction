@@ -258,7 +258,6 @@ const Dashboard = () => {
 							</div>
 							<div className="col-md-4 align-self-center">
 								<h1 className="">{user.username}</h1>
-								<p>{user.division}</p>
 								<Chip
 									color="success"
 									avatar={

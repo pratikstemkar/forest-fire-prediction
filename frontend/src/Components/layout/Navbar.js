@@ -18,7 +18,7 @@ import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { DrawerContext } from "../../Contexts/DrawerContext";
-
+import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -64,7 +64,7 @@ const Navbar = () => {
 				{
 					name: "Data Entry",
 					icon: <StorageIcon />,
-					link: "/dataentry-ro",
+					link: "/dataentry",
 					role: ["RO"],
 					auth: true,
 				},
@@ -77,24 +77,24 @@ const Navbar = () => {
 						/>
 					),
 					link: "/dashboard",
-					role: ["ROLE_RO", "ROLE_DFO", "ROLE_ADMIN"],
+					role: ["ROLE_RO", "ROLE_USER", "ROLE_ADMIN"],
 					auth: true,
 				},
 				{
 					name: "Logout",
 					icon: <LogoutIcon />,
 					link: "/logout",
-					role: ["ROLE_RO", "ROLE_DFO", "ROLE_ADMIN"],
+					role: ["ROLE_RO", "ROLE_USER", "ROLE_ADMIN"],
 					auth: true,
 				},
 			];
-		} else if (user.roles.includes("ROLE_DFO")) {
+		} else if (user.roles.includes("ROLE_USER")) {
 			drawerLinks = [
 				{
-					name: "Data Entry",
-					icon: <StorageIcon />,
-					link: "/dataentry-do",
-					role: ["DFO"],
+					name: "Prediction",
+					icon: <OnlinePredictionIcon />,
+					link: "/prediction",
+					role: ["USER"],
 					auth: true,
 				},
 				{
@@ -106,14 +106,14 @@ const Navbar = () => {
 						/>
 					),
 					link: "/dashboard",
-					role: ["ROLE_RO", "ROLE_DFO", "ROLE_ADMIN"],
+					role: ["ROLE_RO", "ROLE_USER", "ROLE_ADMIN"],
 					auth: true,
 				},
 				{
 					name: "Logout",
 					icon: <LogoutIcon />,
 					link: "/logout",
-					role: ["ROLE_RO", "ROLE_DFO", "ROLE_ADMIN"],
+					role: ["ROLE_RO", "ROLE_USER", "ROLE_ADMIN"],
 					auth: true,
 				},
 			];
@@ -135,14 +135,14 @@ const Navbar = () => {
 						/>
 					),
 					link: "/dashboard",
-					role: ["ROLE_RO", "ROLE_DFO", "ROLE_ADMIN"],
+					role: ["ROLE_RO", "ROLE_USER", "ROLE_ADMIN"],
 					auth: true,
 				},
 				{
 					name: "Logout",
 					icon: <LogoutIcon />,
 					link: "/logout",
-					role: ["ROLE_RO", "ROLE_DFO", "ROLE_ADMIN"],
+					role: ["ROLE_RO", "ROLE_USER", "ROLE_ADMIN"],
 					auth: true,
 				},
 			];
@@ -191,21 +191,61 @@ const Navbar = () => {
 				</Button>,
 			];
 		} else if (
-			JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_RO") ||
-			JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_DFO")
+			JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_RO")
 		) {
 			matlinks = [
 				<Link
 					style={{ textDecoration: "none", color: "white" }}
 					to={
 						JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_RO")
-							? "dataentry-ro"
-							: "dataentry-do"
+							? "dataentry"
+							: "prediction"
 					}
 				>
 					<Button color="inherit">
 						<StorageIcon />
 						&nbsp;Data Entry
+					</Button>
+				</Link>,
+				<Link
+					style={{ textDecoration: "none", color: "white" }}
+					to="/dashboard"
+				>
+					<Button color="inherit">
+						<Avatar
+							src={JSON.parse(localStorage.getItem("user")).pfp}
+							sx={{ width: 25, height: 25 }}
+						/>
+						&nbsp;Profile
+					</Button>
+				</Link>,
+				<Button onClick={logout} color="inherit">
+					<LogoutIcon />
+					&nbsp;Logout
+				</Button>,
+				<>
+					{pathname === "/visualise" && (
+						<IconButton onClick={handleOpen}>
+							<Menu style={{ color: "white" }} />
+						</IconButton>
+					)}
+				</>,
+			];
+		} else if (
+			JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_USER")
+		) {
+			matlinks = [
+				<Link
+					style={{ textDecoration: "none", color: "white" }}
+					to={
+						JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_RO")
+							? "dataentry"
+							: "prediction"
+					}
+				>
+					<Button color="inherit">
+						<OnlinePredictionIcon />
+						&nbsp;Prediction
 					</Button>
 				</Link>,
 				<Link
@@ -256,19 +296,27 @@ const Navbar = () => {
 							) : null}
 							&nbsp;
 							{isMatch ? (
-								<span className="text-light lead">
-									<Link
-										style={{ textDecoration: "none", color: "white" }}
-										to="/"
-									>
-										&nbsp;<strong>Sikkim Forest Fire Information</strong>
-									</Link>
-								</span>
+								<>
+									<img
+										className="my-2"
+										src="https://cdn.discordapp.com/attachments/909801322436505600/933675374628438016/forest-fire.png"
+										style={{ width: "8%", maxWidth: "8%" }}
+										alt="app logo"
+									/>
+									<span className="text-light lead">
+										<Link
+											style={{ textDecoration: "none", color: "white" }}
+											to="/"
+										>
+											&nbsp;<strong>Forest Fire Prediction</strong>
+										</Link>
+									</span>
+								</>
 							) : (
 								<>
 									<img
 										className="my-2"
-										src="https://www.pngplay.com/wp-content/uploads/12/Coat-Of-Arms-Of-India-Transparent-Images-Clip-Art.png"
+										src="https://cdn.discordapp.com/attachments/909801322436505600/933675374628438016/forest-fire.png"
 										style={{ width: "3%", maxWidth: "3%" }}
 										alt="app logo"
 									/>
@@ -277,7 +325,7 @@ const Navbar = () => {
 											style={{ textDecoration: "none", color: "white" }}
 											to="/"
 										>
-											&nbsp;<strong>Sikkim Forest Fire Information</strong>
+											&nbsp;<strong>Forest Fire Prediction</strong>
 										</Link>
 									</Typography>
 								</>
@@ -307,7 +355,7 @@ const Navbar = () => {
 					<List style={{ color: "white" }}>
 						<ListItem onClick={toggleDrawer(false)}>
 							<Link to="/" style={{ textDecoration: "none", color: "white" }}>
-								<ListItemText primary="Sikkim Forest Fire Information System" />
+								<ListItemText primary="Forest Fire Prediction" />
 							</Link>
 						</ListItem>
 					</List>

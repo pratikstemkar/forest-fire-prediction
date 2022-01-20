@@ -104,11 +104,11 @@ const Login = () => {
 
 	if (isAuthenticated) {
 		if (JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_RO")) {
-			return <Navigate to="/dataentry-ro" />;
+			return <Navigate to="/dataentry" />;
 		} else if (
-			JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_DFO")
+			JSON.parse(localStorage.getItem("user")).roles.includes("ROLE_USER")
 		) {
-			return <Navigate to="/dataentry-do" />;
+			return <Navigate to="/prediction" />;
 		} else {
 			return <Navigate to="/admin" />;
 		}
