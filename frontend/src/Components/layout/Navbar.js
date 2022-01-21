@@ -13,6 +13,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import StorageIcon from "@mui/icons-material/Storage";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import Menu from "@mui/icons-material/List";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
@@ -46,6 +47,13 @@ const Navbar = () => {
 			name: "Developers",
 			icon: <GroupIcon />,
 			link: "/developers",
+			role: [],
+			auth: false,
+		},
+		{
+			name: "Register",
+			icon: <PersonAddAltIcon />,
+			link: "/register",
 			role: [],
 			auth: false,
 		},
@@ -154,6 +162,12 @@ const Navbar = () => {
 			<Button color="inherit">
 				<GroupIcon />
 				&nbsp;Developers
+			</Button>
+		</Link>,
+		<Link style={{ textDecoration: "none", color: "white" }} to="/register">
+			<Button color="inherit">
+				<PersonAddAltIcon />
+				&nbsp;Register
 			</Button>
 		</Link>,
 		<Link style={{ textDecoration: "none", color: "white" }} to="/login">

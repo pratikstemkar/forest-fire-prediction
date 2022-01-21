@@ -24,33 +24,40 @@ export const SR_URL = "/api/security/role/save";
 export const DR_URL = "/api/security/role/delete/";
 export const UR_URL = "/api/security/role/update";
 
-// Range URLs
-export const RANGE_URL = "/api/spldata/range/";
-export const GRANGE_URL = "/api/spldata/ranges";
-export const SRANGE_URL = "/api/spldata/range/save";
-export const DRANGE_URL = "/api/spldata/range/delete/";
-export const URANGE_URL = "/api/spldata/range/update";
+// Fire Cause URLs
+export const FCAUSE_URL = "/api/spldata/firecause/";
+export const GFCAUSE_URL = "/api/spldata/firecauses";
+export const SFCAUSE_URL = "/api/spldata/firecause/save";
+export const DFCAUSE_URL = "/api/spldata/firecause/delete/";
+export const UFCAUSE_URL = "/api/spldata/firecause/update";
 
-// Division URLs
-export const DIV_URL = "/api/spldata/division/";
-export const GDIV_URL = "/api/spldata/divisions";
-export const SDIV_URL = "/api/spldata/division/save";
-export const DDIV_URL = "/api/spldata/division/delete/";
-export const UDIV_URL = "/api/spldata/division/update";
+// Owner URLs
+export const OWNER_URL = "/api/spldata/owner/";
+export const GOWNER_URL = "/api/spldata/owners";
+export const SOWNER_URL = "/api/spldata/owner/save";
+export const DOWNER_URL = "/api/spldata/owner/delete/";
+export const UOWNER_URL = "/api/spldata/owner/update";
 
-// Wildlife URLs
-export const WILD_URL = "/api/spldata/wildlife/";
-export const GWILD_URL = "/api/spldata/wildlifes";
-export const SWILD_URL = "/api/spldata/wildlife/save";
-export const DWILD_URL = "/api/spldata/wildlife/delete/";
-export const UWILD_URL = "/api/spldata/wildlife/update";
+// Fire Size URLs
+export const FSIZE_URL = "/api/spldata/firesize/";
+export const GFSIZE_URL = "/api/spldata/firesizes";
+export const SFSIZE_URL = "/api/spldata/firesize/save";
+export const DFSIZE_URL = "/api/spldata/firesize/delete/";
+export const UFSIZE_URL = "/api/spldata/firesize/update";
 
-// Species URLs
-export const SPEC_URL = "/api/spldata/species/";
-export const GSPEC_URL = "/api/spldata/species";
-export const SSPEC_URL = "/api/spldata/species/save";
-export const DSPEC_URL = "/api/spldata/species/delete/";
-export const USPEC_URL = "/api/spldata/species/update";
+// NWCG Reporting URLs
+export const NWCG_URL = "/api/spldata/nwcgreporting/";
+export const GNWCG_URL = "/api/spldata/nwcgreportings";
+export const SNWCG_URL = "/api/spldata/nwcgreporting/save";
+export const DNWCG_URL = "/api/spldata/nwcgreporting/delete/";
+export const UNWCG_URL = "/api/spldata/nwcgreporting/update";
+
+// Source System URLs
+export const SSYS_URL = "/api/spldata/sourcesystem/";
+export const GSSYS_URL = "/api/spldata/sourcesystems";
+export const SSSYS_URL = "/api/spldata/sourcesystem/save";
+export const DSSYS_URL = "/api/spldata/sourcesystem/delete/";
+export const USSYS_URL = "/api/spldata/sourcesystem/update";
 
 // Data URLs
 export const DATA_COUNT = "/api/data/count";

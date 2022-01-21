@@ -4,8 +4,8 @@ import {
 	DATA_COUNT,
 	DATA_UPDATE_URL,
 	DATA_URL,
-	GSPEC_URL,
-	GWILD_URL,
+	GSSYS_URL,
+	GNWCG_URL,
 } from "../constants";
 
 class dataEntryService {
@@ -73,7 +73,7 @@ class dataEntryService {
 	getSpeciesData = () => {
 		const config = {
 			method: "get",
-			url: `${API_URL}${GSPEC_URL}`,
+			url: `${API_URL}${GSSYS_URL}`,
 			headers: {},
 		};
 
@@ -83,7 +83,7 @@ class dataEntryService {
 	getWildlifeData = () => {
 		var config = {
 			method: "get",
-			url: `${API_URL}${GWILD_URL}`,
+			url: `${API_URL}${GNWCG_URL}`,
 			headers: {},
 		};
 

@@ -39,10 +39,11 @@ const AuthReducer = (state, action) => {
 				loading: false,
 			};
 
-		case "SRANGE_SUCCESS":
-		case "SSPEC_SUCCESS":
-		case "SWILD_SUCCESS":
-		case "SDIV_SUCCESS":
+		case "SFCAUSE_SUCCESS":
+		case "SOWNER_SUCCESS":
+		case "SSSYS_SUCCESS":
+		case "SNWCG_SUCCESS":
+		case "SFSIZE_SUCCESS":
 		case "SR_SUCCESS":
 		case "SU_SUCCESS":
 		case "CPFP_SUCCESS":
@@ -53,10 +54,11 @@ const AuthReducer = (state, action) => {
 				loading: false,
 			};
 
-		case "SWILD_FAIL":
-		case "SSPEC_FAIL":
-		case "SRANGE_FAIL":
-		case "SDIV_FAIL":
+		case "SNWCG_FAIL":
+		case "SSSYS_FAIL":
+		case "SFCAUSE_FAIL":
+		case "SOWNER_FAIL":
+		case "SFSIZE_FAIL":
 		case "SR_FAIL":
 		case "SU_FAIL":
 		case "CPFP_FAIL":
@@ -67,14 +69,16 @@ const AuthReducer = (state, action) => {
 				loading: false,
 			};
 
-		case "DWILD_SUCCESS":
-		case "DWILD_FAIL":
-		case "DSPEC_SUCCESS":
-		case "DSPEC_FAIL":
-		case "DRANGE_SUCCESS":
-		case "DRANGE_FAIL":
-		case "DDIV_SUCCESS":
-		case "DDIV_FAIL":
+		case "DNWCG_SUCCESS":
+		case "DNWCG_FAIL":
+		case "DSSYS_SUCCESS":
+		case "DSSYS_FAIL":
+		case "DFCAUSE_SUCCESS":
+		case "DFCAUSE_FAIL":
+		case "DOWNER_SUCCESS":
+		case "DOWNER_FAIL":
+		case "DFSIZE_SUCCESS":
+		case "DFSIZE_FAIL":
 		case "DR_FAIL":
 		case "DR_SUCCESS":
 		case "DU_FAIL":
@@ -84,14 +88,16 @@ const AuthReducer = (state, action) => {
 				loading: false,
 			};
 
-		case "UWILD_SUCCESS":
-		case "UWILD_FAIL":
-		case "USPEC_SUCCESS":
-		case "USPEC_FAIL":
-		case "URANGE_SUCCESS":
-		case "URANGE_FAIL":
-		case "UDIV_SUCCESS":
-		case "UDIV_FAIL":
+		case "UNWCG_SUCCESS":
+		case "UNWCG_FAIL":
+		case "USSYS_SUCCESS":
+		case "USSYS_FAIL":
+		case "UFCAUSE_SUCCESS":
+		case "UFCAUSE_FAIL":
+		case "UOWNER_SUCCESS":
+		case "UOWNER_FAIL":
+		case "UFSIZE_SUCCESS":
+		case "UFSIZE_FAIL":
 		case "RU_FAIL":
 		case "RU_SUCCESS":
 		case "UU_FAIL":

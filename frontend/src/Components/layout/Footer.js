@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -84,19 +83,8 @@ const Footer = () => {
 							<div className="row">
 								<div className="col">
 									<small>
-										Sikkim Forest Fire Information &reg;{" "}
-										{new Date().getFullYear()}
+										Forest Fire Prediction &reg; {new Date().getFullYear()}
 									</small>
-								</div>
-								<div className="col-sm-2">
-									<script
-										type="text/javascript"
-										src="https://freehitcounters.org/count/a12d"
-									></script>
-									<script
-										type="text/javascript"
-										src="https://whomania.com/ctr?id=c996b2822d136a3ccbf590c42c6dadfcfa7f5672"
-									></script>
 								</div>
 							</div>
 						</Box>

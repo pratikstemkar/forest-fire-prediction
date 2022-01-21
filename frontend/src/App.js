@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Components/auth/Login";
 import Dashboard from "./Components/dashboard/Dashboard";
 import DataEntryRO from "./Components/data/layout/DataEntryRO";
-import DataEntryDO from "./Components/data/layout/DataEntryDO";
 import AlertUI from "./Components/layout/Alert";
 import Landing from "./Components/layout/Landing";
 import Navbar from "./Components/layout/Navbar";
@@ -18,6 +17,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import PageNotFound from "./Components/layout/PageNotFound";
 import appTheme from "./appTheme";
 import Logout from "./Components/auth/Logout";
+import Register from "./Components/auth/Register";
+import Prediction from "./Components/prediction/Prediction";
 
 function App() {
 	const { loadUser, logout } = useContext(AuthContext);
@@ -57,6 +58,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Landing />} />
 						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
 						<Route
 							path="/dataentry"
 							element={
@@ -69,7 +71,7 @@ function App() {
 							path="/prediction"
 							element={
 								<PrivateRoute>
-									<DataEntryDO />
+									<Prediction />
 								</PrivateRoute>
 							}
 						/>
