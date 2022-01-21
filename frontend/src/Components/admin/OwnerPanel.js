@@ -261,7 +261,7 @@ const OwnerPanel = (props) => {
 							<CloseIcon />
 						</IconButton>
 						<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-							Fire Cause
+							Owner
 						</Typography>
 						<Button autoFocus color="inherit" onClick={props.handleOwnerClose}>
 							SAVE
