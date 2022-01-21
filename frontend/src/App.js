@@ -18,6 +18,7 @@ import PageNotFound from "./Components/layout/PageNotFound";
 import appTheme from "./appTheme";
 import Logout from "./Components/auth/Logout";
 import Register from "./Components/auth/Register";
+import Developers from "./Components/layout/Developers";
 import Prediction from "./Components/prediction/Prediction";
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
 						<Route path="/" element={<Landing />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
+						<Route path="/developers" element={<Developers />} />
 						<Route
 							path="/dataentry"
 							element={
