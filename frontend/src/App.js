@@ -18,6 +18,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import PageNotFound from "./Components/layout/PageNotFound";
 import appTheme from "./appTheme";
 import Logout from "./Components/auth/Logout";
+import Prediction from "./Components/prediction/Prediction";
 
 function App() {
 	const { loadUser, logout } = useContext(AuthContext);
@@ -69,7 +70,7 @@ function App() {
 							path="/prediction"
 							element={
 								<PrivateRoute>
-									<DataEntryDO />
+									<Prediction />
 								</PrivateRoute>
 							}
 						/>
