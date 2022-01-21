@@ -7,25 +7,28 @@ import {
 	CPFP_URL,
 	CP_URL,
 	CU_URL,
-	DDIV_URL,
-	DRANGE_URL,
+	DFCAUSE_URL,
+	DOWNER_URL,
+	DFSIZE_URL,
 	DR_URL,
-	DSPEC_URL,
+	DSSYS_URL,
 	DU_URL,
-	DWILD_URL,
+	DNWCG_URL,
 	LOGIN_URL,
-	SDIV_URL,
-	SRANGE_URL,
+	SFCAUSE_URL,
+	SOWNER_URL,
+	SFSIZE_URL,
 	SR_URL,
-	SSPEC_URL,
+	SSSYS_URL,
 	SU_URL,
-	SWILD_URL,
-	UDIV_URL,
-	URANGE_URL,
+	SNWCG_URL,
+	UFCAUSE_URL,
+	UOWNER_URL,
+	UFSIZE_URL,
 	UR_URL,
-	USPEC_URL,
+	USSYS_URL,
 	UU_URL,
-	UWILD_URL,
+	UNWCG_URL,
 } from "../constants";
 
 import AuthReducer from "./Reducers/AuthReducer";
@@ -373,341 +376,424 @@ export const AuthProvider = ({ children }) => {
 			});
 	};
 
-	// RANGE
-	const addrange = (name, description, img) => {
+	// FIRE CAUSE
+	const addfirecause = (name, img) => {
 		setLoading(true);
 
 		const payload = {
 			name: name,
-			description: description,
 			img: img,
 		};
 
 		axios
-			.post(`${API_URL}${SRANGE_URL}`, payload)
+			.post(`${API_URL}${SFCAUSE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
-						type: "SRANGE_SUCCESS",
+						type: "SFCAUSE_SUCCESS",
 					});
-					setAlert(`Range Added Successfully!`, "success");
+					setAlert(`Fire Cause Added Successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				if (err.response) {
 					console.log(err.response.data.message);
 					dispatch({
-						type: "SRANGE_FAIL",
+						type: "SFCAUSE_FAIL",
 					});
 					setAlert(err.response.data.message, "error");
 				}
 			});
 	};
 
-	const updaterange = (id, name, description, img) => {
+	const updatefirecause = (id, name, img) => {
 		setLoading(true);
 
 		const payload = {
 			id: id,
 			name: name,
-			description: description,
 			img: img,
 		};
 
 		axios
-			.put(`${API_URL}${URANGE_URL}`, payload)
+			.put(`${API_URL}${UFCAUSE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "URANGE_SUCCESS",
+						type: "UFCAUSE_SUCCESS",
 					});
 					setAlert(`${name} updated successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "URANGE_FAIL",
+					type: "UFCAUSE_FAIL",
 				});
-				setAlert(`Range Update Failed!\n${err.response.data.message}`, "error");
+				setAlert(
+					`Fire Cause Update Failed!\n${err.response.data.message}`,
+					"error"
+				);
 			});
 	};
 
-	const deleterange = (name) => {
+	const deletefirecause = (name) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DRANGE_URL}${name}`)
+			.delete(`${API_URL}${DFCAUSE_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "DRANGE_SUCCESS",
+						type: "DFCAUSE_SUCCESS",
 					});
-					setAlert("Range Deleted Successfully!", "success");
+					setAlert("Fire Cause Deleted Successfully!", "success");
 					// window.location.reload();
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "DRANGE_FAIL",
+					type: "DFCAUSE_FAIL",
 				});
-				setAlert(`Range Delete Failed!\n${err.response.data.message}`, "error");
+				setAlert(
+					`Fire Cause Delete Failed!\n${err.response.data.message}`,
+					"error"
+				);
 			});
 	};
 
-	// DIVISION
-	const adddivision = (name, description, img) => {
+	// OWNER
+	const addowner = (name, img) => {
 		setLoading(true);
 
 		const payload = {
 			name: name,
-			description: description,
 			img: img,
 		};
 
 		axios
-			.post(`${API_URL}${SDIV_URL}`, payload)
+			.post(`${API_URL}${SOWNER_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
-						type: "SDIV_SUCCESS",
+						type: "SOWNER_SUCCESS",
 					});
-					setAlert(`Division Added Successfully!`, "success");
+					setAlert(`Owner Added Successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				if (err.response) {
 					console.log(err.response.data.message);
 					dispatch({
-						type: "SDIV_FAIL",
+						type: "SOWNER_FAIL",
 					});
 					setAlert(err.response.data.message, "error");
 				}
 			});
 	};
 
-	const updatedivision = (id, name, description, img) => {
+	const updateowner = (id, name, img) => {
 		setLoading(true);
 
 		const payload = {
 			id: id,
 			name: name,
-			description: description,
 			img: img,
 		};
 
 		axios
-			.put(`${API_URL}${UDIV_URL}`, payload)
+			.put(`${API_URL}${UOWNER_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "UDIV_SUCCESS",
+						type: "UOWNER_SUCCESS",
 					});
 					setAlert(`${name} updated successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "UDIV_FAIL",
+					type: "UOWNER_FAIL",
 				});
-				setAlert(
-					`Division Update Failed!\n${err.response.data.message}`,
-					"error"
-				);
+				setAlert(`Owner Update Failed!\n${err.response.data.message}`, "error");
 			});
 	};
 
-	const deletedivision = (name) => {
+	const deleteowner = (name) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DDIV_URL}${name}`)
+			.delete(`${API_URL}${DOWNER_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "DDIV_SUCCESS",
+						type: "DOWNER_SUCCESS",
 					});
-					setAlert("Division Deleted Successfully!", "success");
+					setAlert("Owner Deleted Successfully!", "success");
 					// window.location.reload();
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "DDIV_FAIL",
+					type: "DOWNER_FAIL",
 				});
-				setAlert(
-					`Division Delete Failed!\n${err.response.data.message}`,
-					"error"
-				);
+				setAlert(`Owner Delete Failed!\n${err.response.data.message}`, "error");
 			});
 	};
 
-	// SPECIES
-	const addspecies = (name, alias, img) => {
+	// FIRE SIZE
+	const addfiresize = (grade, size, img) => {
 		setLoading(true);
 
 		const payload = {
-			name: name,
-			alias: alias,
+			grade: grade,
+			size: size,
 			img: img,
 		};
 
 		axios
-			.post(`${API_URL}${SSPEC_URL}`, payload)
+			.post(`${API_URL}${SFSIZE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
-						type: "SSPEC_SUCCESS",
+						type: "SFSIZE_SUCCESS",
 					});
-					setAlert(`Species Added Successfully!`, "success");
+					setAlert(`FireSize Added Successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				if (err.response) {
 					console.log(err.response.data.message);
 					dispatch({
-						type: "SSPEC_FAIL",
+						type: "SFSIZE_FAIL",
 					});
 					setAlert(err.response.data.message, "error");
 				}
 			});
 	};
 
-	const updatespecies = (id, name, alias, img) => {
+	const updatefiresize = (id, grade, size, img) => {
 		setLoading(true);
 
 		const payload = {
 			id: id,
-			name: name,
-			alias: alias,
+			grade: grade,
+			size: size,
 			img: img,
 		};
 
 		axios
-			.put(`${API_URL}${USPEC_URL}`, payload)
+			.put(`${API_URL}${UFSIZE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "USPEC_SUCCESS",
+						type: "UFSIZE_SUCCESS",
 					});
-					setAlert(`${name} updated successfully!`, "success");
+					setAlert(`${grade} updated successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "USPEC_FAIL",
+					type: "UFSIZE_FAIL",
 				});
 				setAlert(
-					`Species Update Failed!\n${err.response.data.message}`,
+					`FireSize Update Failed!\n${err.response.data.message}`,
 					"error"
 				);
 			});
 	};
 
-	const deletespecies = (name) => {
+	const deletefiresize = (grade) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DSPEC_URL}${name}`)
+			.delete(`${API_URL}${DFSIZE_URL}${grade}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "DSPEC_SUCCESS",
+						type: "DFSIZE_SUCCESS",
 					});
-					setAlert("Species Deleted Successfully!", "success");
+					setAlert("FireSize Deleted Successfully!", "success");
+					// window.location.reload();
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "DSPEC_FAIL",
+					type: "DFSIZE_FAIL",
 				});
 				setAlert(
-					`Species Delete Failed!\n${err.response.data.message}`,
+					`FireSize Delete Failed!\n${err.response.data.message}`,
 					"error"
 				);
 			});
 	};
 
-	// WILDLIFE
-	const addwildlife = (name, alias, img) => {
+	// SOUREC SYSTEM
+	const addsourcesystem = (name, type, img) => {
 		setLoading(true);
 
 		const payload = {
 			name: name,
-			alias: alias,
+			type: type,
 			img: img,
 		};
 
 		axios
-			.post(`${API_URL}${SWILD_URL}`, payload)
+			.post(`${API_URL}${SSSYS_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
-						type: "SWILD_SUCCESS",
+						type: "SSSYS_SUCCESS",
 					});
-					setAlert(`Wildlife Added Successfully!`, "success");
+					setAlert(`Source System Added Successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				if (err.response) {
 					console.log(err.response.data.message);
 					dispatch({
-						type: "SWILD_FAIL",
+						type: "SSSYS_FAIL",
 					});
 					setAlert(err.response.data.message, "error");
 				}
 			});
 	};
 
-	const updatewildlife = (id, name, alias, img) => {
+	const updatesourcesystem = (id, name, type, img) => {
 		setLoading(true);
 
 		const payload = {
 			id: id,
 			name: name,
-			alias: alias,
+			type: type,
 			img: img,
 		};
 
 		axios
-			.put(`${API_URL}${UWILD_URL}`, payload)
+			.put(`${API_URL}${USSYS_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "UWILD_SUCCESS",
+						type: "USSYS_SUCCESS",
 					});
 					setAlert(`${name} updated successfully!`, "success");
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "UWILD_FAIL",
+					type: "USSYS_FAIL",
 				});
 				setAlert(
-					`Wildlife Update Failed!\n${err.response.data.message}`,
+					`Source System Update Failed!\n${err.response.data.message}`,
 					"error"
 				);
 			});
 	};
 
-	const deletewildlife = (name) => {
+	const deletesourcesystem = (name) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DWILD_URL}${name}`)
+			.delete(`${API_URL}${DSSYS_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
-						type: "DWILD_SUCCESS",
+						type: "DSSYS_SUCCESS",
 					});
-					setAlert("Wildlife Deleted Successfully!", "success");
+					setAlert("Source System Deleted Successfully!", "success");
 				}
 			})
 			.catch((err) => {
 				dispatch({
-					type: "DWILD_FAIL",
+					type: "DSSYS_FAIL",
 				});
 				setAlert(
-					`Wildlife Delete Failed!\n${err.response.data.message}`,
+					`Source System Delete Failed!\n${err.response.data.message}`,
+					"error"
+				);
+			});
+	};
+
+	// NWCG Reporting
+	const addnwcgreporting = (name, agency, img) => {
+		setLoading(true);
+
+		const payload = {
+			name: name,
+			agency: agency,
+			img: img,
+		};
+
+		axios
+			.post(`${API_URL}${SNWCG_URL}`, payload)
+			.then(function (response) {
+				if (response.status === 201) {
+					dispatch({
+						type: "SNWCG_SUCCESS",
+					});
+					setAlert(`NWCG Reporting Added Successfully!`, "success");
+				}
+			})
+			.catch((err) => {
+				if (err.response) {
+					console.log(err.response.data.message);
+					dispatch({
+						type: "SNWCG_FAIL",
+					});
+					setAlert(err.response.data.message, "error");
+				}
+			});
+	};
+
+	const updatenwcgreporting = (id, name, agency, img) => {
+		setLoading(true);
+
+		const payload = {
+			id: id,
+			name: name,
+			agency: agency,
+			img: img,
+		};
+
+		axios
+			.put(`${API_URL}${UNWCG_URL}`, payload)
+			.then(function (response) {
+				if (response.status === 200) {
+					dispatch({
+						type: "UNWCG_SUCCESS",
+					});
+					setAlert(`${name} updated successfully!`, "success");
+				}
+			})
+			.catch((err) => {
+				dispatch({
+					type: "UNWCG_FAIL",
+				});
+				setAlert(
+					`NWCG Reporting Update Failed!\n${err.response.data.message}`,
+					"error"
+				);
+			});
+	};
+
+	const deletenwcgreporting = (name) => {
+		setLoading(true);
+
+		axios
+			.delete(`${API_URL}${DNWCG_URL}${name}`)
+			.then(function (response) {
+				if (response.status === 200) {
+					dispatch({
+						type: "DNWCG_SUCCESS",
+					});
+					setAlert("NWCG Reporting Deleted Successfully!", "success");
+				}
+			})
+			.catch((err) => {
+				dispatch({
+					type: "DNWCG_FAIL",
+				});
+				setAlert(
+					`NWCG Reporting Delete Failed!\n${err.response.data.message}`,
 					"error"
 				);
 			});
@@ -732,18 +818,21 @@ export const AuthProvider = ({ children }) => {
 				addrole,
 				updaterole,
 				deleterole,
-				addrange,
-				updaterange,
-				deleterange,
-				adddivision,
-				updatedivision,
-				deletedivision,
-				addspecies,
-				updatespecies,
-				deletespecies,
-				addwildlife,
-				updatewildlife,
-				deletewildlife,
+				addfirecause,
+				updatefirecause,
+				deletefirecause,
+				addowner,
+				updateowner,
+				deleteowner,
+				addfiresize,
+				updatefiresize,
+				deletefiresize,
+				addsourcesystem,
+				updatesourcesystem,
+				deletesourcesystem,
+				addnwcgreporting,
+				updatenwcgreporting,
+				deletenwcgreporting,
 			}}
 		>
 			{children}

@@ -1,13 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import {
-	API_URL,
-	AU_URL,
-	USER_URL,
-	GR_URL,
-	GRANGE_URL,
-	GDIV_URL,
-} from "../../constants";
+import { API_URL, AU_URL, USER_URL, GR_URL } from "../../constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 
 import Alert from "@mui/material/Alert";
@@ -18,12 +11,13 @@ import SaveIcon from "@mui/icons-material/Save";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import AttractionsIcon from "@mui/icons-material/Attractions";
-import BalconyIcon from "@mui/icons-material/Balcony";
+import SatelliteAltIcon from "@mui/icons-material/Satellite";
 import PetsIcon from "@mui/icons-material/Pets";
-import EmojiNatureIcon from "@mui/icons-material/EmojiNature";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -35,11 +29,12 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import RolePanel from "./RolePanel";
-import RangePanel from "./RangePanel";
-import DivisionPanel from "./DivisionPanel";
+import FireCausePanel from "./FireCausePanel";
+import OwnerPanel from "./OwnerPanel";
+import FireSizePanel from "./FireSizePanel";
 import { DrawerContext } from "../../Contexts/DrawerContext";
-import SpeciesPanel from "./SpeciesPanel";
-import WildlifePanel from "./WildlifePanel";
+import SourceSystemPanel from "./SourceSystemPanel";
+import NWCGReportingPanel from "./NWCGReportingPanel";
 
 const AdminPanel = () => {
 	const { deleteuser, loading, updateuser, adduser, setAlert } =
@@ -52,8 +47,6 @@ const AdminPanel = () => {
 	const [state, setState] = useState({
 		records: [],
 		roles: [],
-		ranges: [],
-		divisions: [],
 		search: "",
 		error: "",
 		update: 0,
@@ -62,10 +55,11 @@ const AdminPanel = () => {
 	const [openDelete, setOpenDelete] = useState(false);
 	const [openAdd, setOpenAdd] = useState(false);
 	const [openRole, setOpenRole] = useState(false);
-	const [openRange, setOpenRange] = useState(false);
-	const [openDivision, setOpenDivision] = useState(false);
-	const [openSpecies, setOpenSpecies] = useState(false);
-	const [openWildlife, setOpenWildlife] = useState(false);
+	const [openFireCause, setOpenFireCause] = useState(false);
+	const [openOwner, setOpenOwner] = useState(false);
+	const [openFireSize, setOpenFireSize] = useState(false);
+	const [openSourceSystem, setOpenSourceSystem] = useState(false);
+	const [openNWCGReporting, setOpenNWCGReporting] = useState(false);
 	const [focusUser, setFocusUser] = useState();
 	const [user, setUser] = useState({
 		userid: "",
@@ -155,52 +149,6 @@ const AdminPanel = () => {
 			});
 
 		console.log(state.roles);
-
-		axios
-			.get(`${API_URL}${GRANGE_URL}`)
-			.then(function (response) {
-				if (response.status === 200) {
-					setState((prevState) => ({
-						...prevState,
-						ranges: response.data,
-						error: "",
-					}));
-				}
-			})
-			.catch(function (error) {
-				if (error.response) {
-					setState((prevState) => ({
-						...prevState,
-						ranges: [],
-						error: "Ranges not Loaded.",
-					}));
-				}
-			});
-
-		console.log(state.ranges);
-
-		axios
-			.get(`${API_URL}${GDIV_URL}`)
-			.then(function (response) {
-				if (response.status === 200) {
-					setState((prevState) => ({
-						...prevState,
-						divisions: response.data,
-						error: "",
-					}));
-				}
-			})
-			.catch(function (error) {
-				if (error.response) {
-					setState((prevState) => ({
-						...prevState,
-						divisions: [],
-						error: "Divisions not Loaded.",
-					}));
-				}
-			});
-
-		console.log(state.divisions);
 	}, []);
 
 	useEffect(() => {
@@ -216,40 +164,49 @@ const AdminPanel = () => {
 		setOpenRole(false);
 	};
 
-	// Ranges
-	const handleRangeOpen = () => {
-		setOpenRange(true);
+	// Fire Cause
+	const handleFireCauseOpen = () => {
+		setOpenFireCause(true);
 	};
 
-	const handleRangeClose = () => {
-		setOpenRange(false);
+	const handleFireCauseClose = () => {
+		setOpenFireCause(false);
 	};
 
-	// Divisions
-	const handleDivisionOpen = () => {
-		setOpenDivision(true);
+	// FireSizes
+	const handleFireSizeOpen = () => {
+		setOpenFireSize(true);
 	};
 
-	const handleDivisionClose = () => {
-		setOpenDivision(false);
+	const handleFireSizeClose = () => {
+		setOpenFireSize(false);
 	};
 
-	// Species
-	const handleSpeciesOpen = () => {
-		setOpenSpecies(true);
+	// SourceSystem
+	const handleSourceSystemOpen = () => {
+		setOpenSourceSystem(true);
 	};
 
-	const handleSpeciesClose = () => {
-		setOpenSpecies(false);
+	const handleSourceSystemClose = () => {
+		setOpenSourceSystem(false);
 	};
 
-	// Wildlife
-	const handleWildlifeOpen = () => {
-		setOpenWildlife(true);
+	// NWCGReporting
+	const handleNWCGReportingOpen = () => {
+		setOpenNWCGReporting(true);
 	};
 
-	const handleWildlifeClose = () => {
-		setOpenWildlife(false);
+	const handleNWCGReportingClose = () => {
+		setOpenNWCGReporting(false);
+	};
+
+	// Owner
+	const handleOwnerOpen = () => {
+		setOpenOwner(true);
+	};
+
+	const handleOwnerClose = () => {
+		setOpenOwner(false);
 	};
 
 	// UPDATE USER
@@ -260,8 +217,6 @@ const AdminPanel = () => {
 					...prevUser,
 					userid: response.data.id,
 					username: response.data.username,
-					range: response.data.range.name,
-					division: response.data.division.name,
 					designation: response.data.designation,
 					pfp: response.data.pfp,
 				}));
@@ -291,20 +246,6 @@ const AdminPanel = () => {
 		}));
 	};
 
-	const handleRangeSelectChange = (e) => {
-		setUser((prevUser) => ({
-			...prevUser,
-			range: e.target.value,
-		}));
-	};
-
-	const handleDivisionSelectChange = (e) => {
-		setUser((prevUser) => ({
-			...prevUser,
-			division: e.target.value,
-		}));
-	};
-
 	const handleSelectChange = (e) => {
 		setUser((prevUser) => ({
 			...prevUser,
@@ -313,29 +254,13 @@ const AdminPanel = () => {
 	};
 
 	const handleUserUpdate = () => {
-		if (user.range === "") {
-			setState((prevState) => ({
-				...prevState,
-				error: "Range field should not be empty.",
-			}));
-		} else if (user.division === "") {
-			setState((prevState) => ({
-				...prevState,
-				error: "Division field should not be empty.",
-			}));
-		} else if (user.designation === "") {
+		if (user.designation === "") {
 			setState((prevState) => ({
 				...prevState,
 				error: "Designation field should not be empty.",
 			}));
 		} else {
-			updateuser(
-				user.username,
-				user.range,
-				user.division,
-				user.designation,
-				user.pfp
-			);
+			updateuser(user.username, user.designation, user.pfp);
 
 			setFocusUser();
 			setOpen(false);
@@ -393,20 +318,6 @@ const AdminPanel = () => {
 		}));
 	};
 
-	const handleAddDivSelectChange = (e) => {
-		setAddUser((prevAddUser) => ({
-			...prevAddUser,
-			division: e.target.value,
-		}));
-	};
-
-	const handleAddRangeSelectChange = (e) => {
-		setAddUser((prevAddUser) => ({
-			...prevAddUser,
-			range: e.target.value,
-		}));
-	};
-
 	const handleAddOpen = () => {
 		setOpenAdd(true);
 	};
@@ -417,8 +328,6 @@ const AdminPanel = () => {
 			username: "",
 			password: "",
 			cpassword: "",
-			range: "Gangtok",
-			division: "East Territorial",
 			designation: "RO",
 		}));
 		setState((prevState) => ({
@@ -443,16 +352,6 @@ const AdminPanel = () => {
 				...prevState,
 				error: "Password values do not match.",
 			}));
-		} else if (addUser.range === "") {
-			setState((prevState) => ({
-				...prevState,
-				error: "Range field should not be empty.",
-			}));
-		} else if (addUser.division === "") {
-			setState((prevState) => ({
-				...prevState,
-				error: "Division field should not be empty.",
-			}));
 		} else if (addUser.designation === "") {
 			setState((prevState) => ({
 				...prevState,
@@ -464,8 +363,6 @@ const AdminPanel = () => {
 			adduser(
 				addUser.username,
 				addUser.password,
-				addUser.range,
-				addUser.division,
 				addUser.designation,
 				addUser.pfp
 			);
@@ -483,8 +380,6 @@ const AdminPanel = () => {
 				username: "",
 				password: "",
 				cpassword: "",
-				range: "Gangtok",
-				division: "East Territorial",
 				designation: "RO",
 				pfp: "",
 			}));
@@ -501,7 +396,7 @@ const AdminPanel = () => {
 						variant="contained"
 						onClick={handleAddOpen}
 						className="mb-2"
-						size={isMatch ? "small" : "large"}
+						size={isMatch ? "small" : "medium"}
 					>
 						Add User
 					</Button>
@@ -512,60 +407,71 @@ const AdminPanel = () => {
 						variant="contained"
 						onClick={handleRoleOpen}
 						className="mb-2"
-						size={isMatch ? "small" : "large"}
+						size={isMatch ? "small" : "medium"}
 					>
 						Roles
+					</Button>
+					&nbsp;&nbsp;&nbsp;
+					<Button
+						color="primary"
+						startIcon={<LocalFireDepartmentIcon />}
+						variant="contained"
+						onClick={handleFireSizeOpen}
+						className="mb-2"
+						size={isMatch ? "small" : "medium"}
+					>
+						Fire Size
 					</Button>
 					&nbsp;&nbsp;&nbsp;
 					<Button
 						color="secondary"
 						startIcon={<AttractionsIcon />}
 						variant="contained"
-						onClick={handleRangeOpen}
+						onClick={handleFireCauseOpen}
 						className="mb-2"
-						size={isMatch ? "small" : "large"}
+						size={isMatch ? "small" : "medium"}
 					>
-						Ranges
-					</Button>
-					&nbsp;&nbsp;&nbsp;
-					<Button
-						color="primary"
-						startIcon={<BalconyIcon />}
-						variant="contained"
-						onClick={handleDivisionOpen}
-						className="mb-2"
-						size={isMatch ? "small" : "large"}
-					>
-						Divisions
+						Fire Cause
 					</Button>
 					&nbsp;&nbsp;&nbsp;
 					<Button
 						color="error"
-						startIcon={<EmojiNatureIcon />}
+						startIcon={<SatelliteAltIcon />}
 						variant="contained"
-						onClick={handleSpeciesOpen}
+						onClick={handleSourceSystemOpen}
 						className="mb-2"
-						size={isMatch ? "small" : "large"}
+						size={isMatch ? "small" : "medium"}
 					>
-						Species
+						Source System
 					</Button>
 					&nbsp;&nbsp;&nbsp;
 					<Button
 						color="success"
 						startIcon={<PetsIcon />}
 						variant="contained"
-						onClick={handleWildlifeOpen}
+						onClick={handleNWCGReportingOpen}
 						className="mb-2"
-						size={isMatch ? "small" : "large"}
+						size={isMatch ? "small" : "medium"}
 					>
-						Wildlife
+						NWCG Reporting
+					</Button>
+					&nbsp;&nbsp;&nbsp;
+					<Button
+						color="secondary"
+						startIcon={<AttachMoneyIcon />}
+						variant="contained"
+						onClick={handleOwnerOpen}
+						className="mb-2"
+						size={isMatch ? "small" : "medium"}
+					>
+						Owner
 					</Button>
 					&nbsp;&nbsp;&nbsp;
 					<IconButton
 						aria-label="delete"
 						onClick={handleRefresh}
 						className="mb-2"
-						size={isMatch ? "small" : "large"}
+						size={isMatch ? "small" : "medium"}
 					>
 						<RefreshIcon color="primary" />
 					</IconButton>
@@ -901,25 +807,30 @@ const AdminPanel = () => {
 					handleRoleClose={handleRoleClose}
 					loading={loading}
 				/>
-				<RangePanel
-					openRange={openRange}
-					handleRangeOpen={handleRangeOpen}
-					handleRangeClose={handleRangeClose}
+				<FireCausePanel
+					openFireCause={openFireCause}
+					handleFireCauseOpen={handleFireCauseOpen}
+					handleFireCauseClose={handleFireCauseClose}
 				/>
-				<DivisionPanel
-					openDivision={openDivision}
-					handleDivisionOpen={handleDivisionOpen}
-					handleDivisionClose={handleDivisionClose}
+				<FireSizePanel
+					openFireSize={openFireSize}
+					handleFireSizeOpen={handleFireSizeOpen}
+					handleFireSizeClose={handleFireSizeClose}
 				/>
-				<SpeciesPanel
-					openSpecies={openSpecies}
-					handleSpeciesOpen={handleSpeciesOpen}
-					handleSpeciesClose={handleSpeciesClose}
+				<SourceSystemPanel
+					openSourceSystem={openSourceSystem}
+					handleSourceSystemOpen={handleSourceSystemOpen}
+					handleSourceSystemClose={handleSourceSystemClose}
 				/>
-				<WildlifePanel
-					openWildlife={openWildlife}
-					handleWildlifeOpen={handleWildlifeOpen}
-					handleWildlifeClose={handleWildlifeClose}
+				<NWCGReportingPanel
+					openNWCGReporting={openNWCGReporting}
+					handleNWCGReportingOpen={handleNWCGReportingOpen}
+					handleNWCGReportingClose={handleNWCGReportingClose}
+				/>
+				<OwnerPanel
+					openOwner={openOwner}
+					handleOwnerOpen={handleOwnerOpen}
+					handleOwnerClose={handleOwnerClose}
 				/>
 			</div>
 		</>
