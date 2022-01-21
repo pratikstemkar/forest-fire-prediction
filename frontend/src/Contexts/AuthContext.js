@@ -207,14 +207,12 @@ export const AuthProvider = ({ children }) => {
 			});
 	};
 
-	const adduser = (username, password, range, division, designation, pfp) => {
+	const adduser = (username, password, designation, pfp) => {
 		setLoading(true);
 
 		const payload = {
 			username: username,
 			password: password,
-			range: range,
-			division: division,
 			designation: designation,
 			pfp: pfp,
 			roles: ["ROLE_" + designation],
@@ -264,13 +262,11 @@ export const AuthProvider = ({ children }) => {
 			});
 	};
 
-	const updateuser = (username, range, division, designation, pfp) => {
+	const updateuser = (username, designation, pfp) => {
 		setLoading(true);
 
 		const payload = {
 			username: username,
-			range: range,
-			division: division,
 			designation: designation,
 			pfp: pfp,
 			roles: ["ROLE_" + designation],

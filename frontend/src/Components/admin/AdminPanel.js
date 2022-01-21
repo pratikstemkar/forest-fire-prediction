@@ -64,14 +64,14 @@ const AdminPanel = () => {
 	const [user, setUser] = useState({
 		userid: "",
 		username: "",
-		designation: "RO",
+		designation: "USER",
 		pfp: "",
 	});
 	const [addUser, setAddUser] = useState({
 		username: "",
 		password: "",
 		cpassword: "",
-		designation: "RO",
+		designation: "USER",
 		pfp: "",
 	});
 
@@ -328,7 +328,7 @@ const AdminPanel = () => {
 			username: "",
 			password: "",
 			cpassword: "",
-			designation: "RO",
+			designation: "USER",
 		}));
 		setState((prevState) => ({
 			...prevState,
@@ -380,7 +380,7 @@ const AdminPanel = () => {
 				username: "",
 				password: "",
 				cpassword: "",
-				designation: "RO",
+				designation: "USER",
 				pfp: "",
 			}));
 		}
