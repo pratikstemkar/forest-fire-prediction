@@ -5,9 +5,17 @@ import {
 	TileLayer,
 	Marker,
 	Popup,
+	useMap,
 } from "react-leaflet";
+import * as L from "leaflet";
 
 const FireCount = () => {
+	var myIcon = L.icon({
+		iconUrl:
+			"https://cdn.discordapp.com/attachments/909801322436505600/933675374628438016/forest-fire.png",
+		iconSize: [40, 40],
+	});
+
 	return (
 		<>
 			<div className="card" style={{ height: "calc(100vh - 80px)" }}>
@@ -18,10 +26,25 @@ const FireCount = () => {
 						scrollWheelZoom={true}
 						style={{ height: "calc(100vh - 80px)" }}
 					>
-						<Marker position={[45.4, -75.7]}>
-							<Popup>
+						<Marker position={[45.4, -75.7]} icon={myIcon}>
+							<Popup closeButton={false} offset={L.point(0, -8)}>
 								<div>
 									<h4>Hello</h4>
+									<p>
+										This is demo. This is demo. This is demo. This is demo. This
+										is demo.
+									</p>
+								</div>
+							</Popup>
+						</Marker>
+						<Marker position={[65.4, -85.7]} icon={myIcon}>
+							<Popup closeButton={false} offset={L.point(0, -8)}>
+								<div>
+									<h4>Hello</h4>
+									<p>
+										This is demo. This is demo. This is demo. This is demo. This
+										is demo.
+									</p>
 								</div>
 							</Popup>
 						</Marker>
