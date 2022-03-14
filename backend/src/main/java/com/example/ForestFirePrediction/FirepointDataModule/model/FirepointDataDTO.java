@@ -10,27 +10,28 @@ import java.util.Map;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class FirepointDataDTO {
-    private Long ID;
-    private String LATITUDE;
-    private String LONGITUDE;
-    private String SOURCE_SYSTEM_TYPE;
-    private String SOURCE_SYSTEM;
-    private String NWCG_REPORTING_AGENCY;
-    private String NWCG_REPORTING_UNIT_ID;
-    private String NWCG_REPORTING_UNIT_NAME;
-    private Integer FIRE_YEAR;
-    private LocalDate DISCOVERY_DATE;
-    private Integer DISCOVERY_DOY;
-    private Integer DISCOVERY_TIME;
-    private Integer STAT_CAUSE_CODE;
-    private String STAT_CAUSE_DESCR;
-    private LocalDate CONT_DATE;
-    private Integer CONT_DOY;
-    private Integer CONT_TIME;
-    private Double FIRE_SIZE;
-    private String FIRE_SIZE_CLASS;
-    private Integer OWNER_CODE;
-    private String OWNER_DESCR;
-    private String STATE;
-    private String COUNTY;
+    private long id;
+    private String latitude;
+    private String longitude;
+    private String source_system_type;
+    private String source_system;
+    private String nwcg_reporting_agency;
+    private String nwcg_reporting_unit_id;
+    private String nwcg_reporting_unit_name;
+    private int fire_year;
+    private String discovery_date;
+    private int discovery_doy;
+    private int discovery_time;
+    private int stat_cause_code;
+    private String stat_cause_desc;
+    private LocalDate cont_date;
+    private int cont_doy;
+    private int cont_time;
+    private double fire_size;
+    private String fire_size_class;
+    private int owner_code;
+    private String owner_desc;
+    private String state;
+    private String county;
+
 }

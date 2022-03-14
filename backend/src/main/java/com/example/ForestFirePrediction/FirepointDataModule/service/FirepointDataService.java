@@ -1,6 +1,7 @@
 package com.example.ForestFirePrediction.FirepointDataModule.service;
 
 import com.example.ForestFirePrediction.FirepointDataModule.model.FirepointData;
+import com.example.ForestFirePrediction.FirepointDataModule.model.FirepointDataResponse;
 import com.example.ForestFirePrediction.FirepointDataModule.repo.FirepointDataRepository;
 import com.example.ForestFirePrediction.SplData.repo.OwnerRepo;
 import com.example.ForestFirePrediction.SplData.repo.SourceSystemRepo;
@@ -8,33 +9,34 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service @RequiredArgsConstructor @Slf4j
 public class FirepointDataService {
 
-//    private final FirepointDataRepository firepointDataRepository;
-//    private final OwnerRepo ownerRepo;
-//    private final SourceSystemRepo sourceSystemRepo;
+    private final FirepointDataRepository firepointDataRepository;
+    private final OwnerRepo ownerRepo;
+    private final SourceSystemRepo sourceSystemRepo;
 
 //    public Long getDataCount(){
 //        return firepointDataRepository.countFirepointData();
 //    }
-//
-//    public List<FirepointData> getData() {
-//        System.out.println(firepointDataRepository.findAll());
-//        return firepointDataRepository.findAll();
-//    }
 
-//    public FirepointDataResponse getResData(Long id){
-//        FirepointData firepointData = firepointDataRepository.findFirepointDataById(id);
-//        if(firepointData != null){
-//            FirepointDataResponse firepointDataResponse = new FirepointDataResponse(firepointData, firepointSpeciesDamagedRepo.findFSDById(firepointData.getId()), firepointWildlifeAffectedRepo.findFWAById(firepointData.getId()), speciesRepo, wildlifeRepo);
-//            return firepointDataResponse;
-//        }else{
-//            throw new IllegalStateException("Firepoint Data not Found for ID: " + id);
-//        }
-//    }
+    public List<FirepointData> getData() {
+        System.out.println(firepointDataRepository.findAll());
+        return firepointDataRepository.findAll();
+    }
+
+    public FirepointDataResponse getResData(Long id){
+        FirepointData firepointData = firepointDataRepository.findFirepointDataByID(id);
+        if(firepointData != null){
+            FirepointDataResponse firepointDataResponse = new FirepointDataResponse(firepointData);
+            return firepointDataResponse;
+        }else{
+            throw new IllegalStateException("Firepoint Data not Found for ID: " + id);
+        }
+    }
 
 //    public List<FirepointDataResponse> getRoResDataList(String username){
 //        List<FirepointData> firepointDataList = firepointDataRepository.findDataEntriesByUsername(username);
@@ -65,7 +67,7 @@ public class FirepointDataService {
 //    public ArrayList<FirepointData> getRoData(String username) {
 //        return firepointDataRepository.findDataEntriesByUsername(username);
 //    }
-//
+
 //    public List<FirepointData> getDoDataEntries(String division){
 //        ArrayList<FirepointData> dataEntries =  firepointDataRepository.findDataEntriesByDivision(division);
 //        return dataEntries.stream() .filter(entry -> entry.getSubmitted() == true).collect(Collectors.toList());
