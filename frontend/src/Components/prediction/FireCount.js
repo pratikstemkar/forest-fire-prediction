@@ -5,7 +5,6 @@ import {
 	TileLayer,
 	Marker,
 	Popup,
-	useMap,
 } from "react-leaflet";
 import * as L from "leaflet";
 
@@ -13,7 +12,7 @@ const FireCount = () => {
 	var myIcon = L.icon({
 		iconUrl:
 			"https://cdn.discordapp.com/attachments/909801322436505600/933675374628438016/forest-fire.png",
-		iconSize: [40, 40],
+		iconSize: [30, 30],
 	});
 
 	return (
@@ -51,8 +50,14 @@ const FireCount = () => {
 						<LayersControl position="topright">
 							<LayersControl.BaseLayer checked name="OSM">
 								<TileLayer
-									attribution="© OpenStreetMap contributors"
-									url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHJpeWFua2ExMjEwOTIiLCJhIjoiY2trbWQxY3h1MnBwMDJvbW5iNW96eTlrcCJ9.scUQlt1OTvRBxmshXeldaQ"
+									attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+									url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+								/>
+							</LayersControl.BaseLayer>
+							<LayersControl.BaseLayer checked name="MapTiler Street Map">
+								<TileLayer
+									attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+									url="https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=ZwUohaY0M43TShPZZw1q"
 								/>
 							</LayersControl.BaseLayer>
 							<LayersControl.BaseLayer name="Google Map">
@@ -61,10 +66,16 @@ const FireCount = () => {
 									url="http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga"
 								/>
 							</LayersControl.BaseLayer>
-							<LayersControl.BaseLayer name="MapTiler">
+							<LayersControl.BaseLayer name="MapTiler Topography">
 								<TileLayer
 									attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
 									url="https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=ZwUohaY0M43TShPZZw1q"
+								/>
+							</LayersControl.BaseLayer>
+							<LayersControl.BaseLayer name="MapTiler Hybrid">
+								<TileLayer
+									attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+									url="https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=ZwUohaY0M43TShPZZw1q"
 								/>
 							</LayersControl.BaseLayer>
 						</LayersControl>

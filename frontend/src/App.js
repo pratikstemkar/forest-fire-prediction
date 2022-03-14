@@ -21,6 +21,7 @@ import Register from "./Components/auth/Register";
 import Developers from "./Components/layout/Developers";
 import Prediction from "./Components/prediction/Prediction";
 import FireCount from "./Components/prediction/FireCount";
+import MapDemo from "./Components/prediction/MapDemo";
 import PrivateOutlet from "./Components/route/PrivateOutlet";
 import FirePrediction from "./Components/prediction/FirePrediction";
 import FireStat from "./Components/prediction/FireStat";
@@ -65,6 +66,7 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/developers" element={<Developers />} />
+						<Route path="/map" element={<MapDemo />} />
 						<Route
 							path="/dataentry"
 							element={

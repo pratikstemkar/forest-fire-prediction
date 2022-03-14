@@ -26,3 +26,7 @@
 	margin-bottom: 14px;
 	font-size: 14px;
 }
+
+.rounded-pill:hover {
+	cursor: pointer;
+}
