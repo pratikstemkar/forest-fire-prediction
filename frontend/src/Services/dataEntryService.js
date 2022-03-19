@@ -6,13 +6,17 @@ import {
 	DATA_URL,
 	GSSYS_URL,
 	GNWCG_URL,
+	GSSYST_URL,
+	GFCAUSE_URL,
+	GOWNER_URL,
+	DATA_SAVE_URL,
 } from "../constants";
 
 class dataEntryService {
 	postData = (dataEntryObject) => {
 		const config = {
 			method: "post",
-			url: `${API_URL}${DATA_UPDATE_URL}`,
+			url: `${API_URL}${DATA_SAVE_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -33,60 +37,15 @@ class dataEntryService {
 		return axios(config);
 	};
 
-	getRoData = (username) => {
-		const config = {
-			method: "get",
-			url: `${API_URL}${DATA_URL}/ro/?username=${username}`,
-			headers: {
-				"Content-Type": "application/json",
-			},
-		};
-
-		return axios(config);
-	};
-
-	getDoData = (division) => {
-		console.log(division);
-		const config = {
-			method: "get",
-			url: `${API_URL}${DATA_URL}/do/?division=${division}`,
-			headers: {
-				"Content-Type": "application/json",
-			},
-		};
-
-		return axios(config);
-	};
-
-	updateData = (dataEntryArray) => {
+	updateData = (dataEntry) => {
 		const config = {
 			method: "put",
 			url: `${API_URL}${DATA_UPDATE_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
-			data: JSON.stringify(dataEntryArray),
+			data: JSON.stringify(dataEntry),
 		};
-		return axios(config);
-	};
-
-	getSpeciesData = () => {
-		const config = {
-			method: "get",
-			url: `${API_URL}${GSSYS_URL}`,
-			headers: {},
-		};
-
-		return axios(config);
-	};
-
-	getWildlifeData = () => {
-		var config = {
-			method: "get",
-			url: `${API_URL}${GNWCG_URL}`,
-			headers: {},
-		};
-
 		return axios(config);
 	};
 
@@ -94,7 +53,67 @@ class dataEntryService {
 		var config = {
 			method: "get",
 			url: `${API_URL}${DATA_COUNT}`,
-			headers: {},
+			headers: { "Content-Type": "application/json" },
+		};
+
+		return axios(config);
+	};
+
+	getSourceSystemType = () => {
+		var config = {
+			method: "get",
+			url: `${API_URL}${GSSYST_URL}`,
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+
+		return axios(config);
+	};
+
+	getSourceSystem = () => {
+		var config = {
+			method: "get",
+			url: `${API_URL}${GSSYS_URL}`,
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+
+		return axios(config);
+	};
+
+	getNWCGReportingAgency = () => {
+		var config = {
+			method: "get",
+			url: `${API_URL}${GNWCG_URL}`,
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+
+		return axios(config);
+	};
+
+	getStatCauseCode = () => {
+		var config = {
+			method: "get",
+			url: `${API_URL}${GFCAUSE_URL}`,
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+
+		return axios(config);
+	};
+
+	getOwnerCode = () => {
+		var config = {
+			method: "get",
+			url: `${API_URL}${GOWNER_URL}`,
+			headers: {
+				"Content-Type": "application/json",
+			},
 		};
 
 		return axios(config);

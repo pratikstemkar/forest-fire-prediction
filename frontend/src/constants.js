@@ -59,7 +59,20 @@ export const SSSYS_URL = "/api/spldata/sourcesystem/save";
 export const DSSYS_URL = "/api/spldata/sourcesystem/delete/";
 export const USSYS_URL = "/api/spldata/sourcesystem/update";
 
+// Source System Type URLs
+export const SSYST_URL = "/api/spldata/sourcesystemtype/";
+export const GSSYST_URL = "/api/spldata/sourcesystemtypes";
+export const SSSYST_URL = "/api/spldata/sourcesystemtype/save";
+export const DSSYST_URL = "/api/spldata/sourcesystemtype/delete/";
+export const USSYST_URL = "/api/spldata/sourcesystemtype/update";
+
 // Data URLs
 export const DATA_COUNT = "/api/data/count";
-export const DATA_URL = "/api/data/fd/list";
-export const DATA_UPDATE_URL = "/api/data";
+export const DATA_URL = "/api/data/";
+export const DATA_SAVE_URL = "/api/data/save";
+export const DATA_UPDATE_URL = "/api/data/update";
+export const DATA_DELETE_URL = "/api/data/delete/";
+
+// Predict API
+export const PREDICT_URL = "http://localhost:5000";
+export const PAPI_URL = "/api";

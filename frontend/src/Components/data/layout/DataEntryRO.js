@@ -9,7 +9,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Container } from "@mui/material";
 import DataEntryForm from "../forms/DataEntryForm";
-import PendingDataEntryTable from "../tables/PendingDataEntryTable";
 import SubmittedDataEntryTable from "../tables/SubmittedDataEntryTable";
 import { DrawerContext } from "../../../Contexts/DrawerContext";
 
@@ -83,8 +82,7 @@ function DataEntryRO(props) {
 					aria-label="full width tabs example"
 				>
 					<Tab label="Data Entry Module" {...a11yProps(0)} />
-					<Tab label="Records Pending for Submission" {...a11yProps(1)} />
-					<Tab label="Records Submitted" {...a11yProps(2)} />
+					<Tab label="Records Submitted" {...a11yProps(1)} />
 				</Tabs>
 			</AppBar>
 			<SwipeableViews
@@ -94,9 +92,6 @@ function DataEntryRO(props) {
 			>
 				<TabPanel value={value} index={0} dir={theme.direction}>
 					<DataEntryForm />
-				</TabPanel>
-				<TabPanel value={value} index={1} dir={theme.direction}>
-					<PendingDataEntryTable />
 				</TabPanel>
 				<TabPanel value={value} index={2} dir={theme.direction}>
 					<SubmittedDataEntryTable />

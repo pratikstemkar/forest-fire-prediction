@@ -110,11 +110,6 @@ const SourceSystemPanel = (props) => {
 				...prevSourceSystemState,
 				error: "SourceSystem Name field should not be empty.",
 			}));
-		} else if (addSourceSystem.SourceSystemtype === "") {
-			setSourceSystemState((prevSourceSystemState) => ({
-				...prevSourceSystemState,
-				error: "SourceSystem type field should not be empty.",
-			}));
 		} else {
 			addsourcesystem(
 				addSourceSystem.SourceSystemname,

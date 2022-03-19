@@ -21,7 +21,6 @@ import Register from "./Components/auth/Register";
 import Developers from "./Components/layout/Developers";
 import Prediction from "./Components/prediction/Prediction";
 import FireCount from "./Components/prediction/FireCount";
-import PrivateOutlet from "./Components/route/PrivateOutlet";
 import FirePrediction from "./Components/prediction/FirePrediction";
 import FireStat from "./Components/prediction/FireStat";
 
@@ -73,11 +72,14 @@ function App() {
 								</PrivateRoute>
 							}
 						/>
-						<Route path="/prediction" element={<Prediction />}>
-							<Route path="firecount" element={<FireCount />} />
-							<Route path="fireprediction" element={<FirePrediction />} />
-							<Route path="firestatistics" element={<FireStat />} />
-						</Route>
+						<Route
+							path="/prediction"
+							element={
+								<PrivateRoute>
+									<Prediction />
+								</PrivateRoute>
+							}
+						/>
 						<Route
 							path="/dashboard"
 							element={

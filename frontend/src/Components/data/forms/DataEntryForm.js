@@ -1,155 +1,56 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Grid, Button, Checkbox } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import dataEntryService from "../../../Services/dataEntryService";
 import { AlertContext } from "../../../Contexts/AlertContext";
 import { DataEntryFormValidation } from "../Helpers/FormFunctions";
 
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import Dialog from "@mui/material/Dialog";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-
 const DataEntryForm = () => {
 	const { setAlert } = useContext(AlertContext);
 
-	const [species, setSpecies] = useState([]);
-	const [wildlife, setWildlife] = useState([]);
+	const [sst, setSst] = useState([]);
+	const [ss, setSs] = useState([]);
+	const [nwcg, setNwcg] = useState([]);
+	const [st, setSt] = useState(["AL", "AZ"]);
+	const [fc, setFc] = useState([]);
+	const [own, setOwn] = useState([]);
 
-	const [checked, setChecked] = useState({});
-	const [totalNum, setTotalNum] = useState({});
-
-	const [openSpecies, setOpenSpecies] = useState(false);
-
-	const handleClickSpecies = () => {
-		setOpenSpecies(true);
-	};
-	const handleCloseSpecies = () => {
-		setOpenSpecies(false);
-	};
-	const handleTotalNum = (event) => {
-		setTotalNum({ ...totalNum, [event.target.name]: event.target.value });
-
-		setDataEntryObject((prevDataEntryObject) => ({
-			...prevDataEntryObject,
-			species_damaged: prevDataEntryObject.species_damaged.map((specie) =>
-				specie.name === event.target.name
-					? { ...specie, total_num: event.target.value }
-					: specie
-			),
-		}));
-	};
-	const handleChangeSpecies = (event) => {
-		console.log(typeof event.target.value);
-		setChecked({ ...checked, [event.target.value]: event.target.checked });
-
-		console.log(event.target.value);
-
-		if (event.target.checked) {
-			setTotalNum({ ...totalNum, [event.target.value]: 0 });
-			setDataEntryObject({
-				...dataEntryObject,
-				species_damaged: [
-					...dataEntryObject.species_damaged,
-					{
-						name: event.target.value,
-						total_num: 0,
-					},
-				],
-			});
-		} else {
-			if (dataEntryObject.species_damaged.length > 0) {
-				setTotalNum({ ...totalNum, [event.target.value]: 0 });
-				setDataEntryObject({
-					...dataEntryObject,
-					species_damaged: dataEntryObject.species_damaged.filter(
-						(item) => item.name !== event.target.value
-					),
-				});
-			}
-		}
-	};
-
-	// useEffect(() => {
-	// 	console.log(totalNum);
-	// }, [totalNum]);
-
-	// useEffect(() => {
-	// 	console.log(checked);
-	// }, [checked]);
-
-	const [openWildlife, setOpenWildlife] = useState(false);
-	const handleClickWildlife = () => {
-		setOpenWildlife(true);
-	};
-	const handleCloseWildlife = () => {
-		setOpenWildlife(false);
-	};
-	const handleTotalNumWild = (event) => {
-		setTotalNum({ ...totalNum, [event.target.name]: event.target.value });
-
-		setDataEntryObject((prevDataEntryObject) => ({
-			...prevDataEntryObject,
-			wildlife_affected: prevDataEntryObject.wildlife_affected.map((wild) =>
-				wild.name === event.target.name
-					? { ...wild, total_num: event.target.value }
-					: wild
-			),
-		}));
-	};
-	const handleChangeWildlife = (event) => {
-		setChecked({ ...checked, [event.target.value]: event.target.checked });
-		setTotalNum({ ...totalNum, [event.target.value]: 0 });
-
-		if (event.target.checked) {
-			setDataEntryObject({
-				...dataEntryObject,
-				wildlife_affected: [
-					...dataEntryObject.wildlife_affected,
-					{
-						name: event.target.value,
-						total_num: 0,
-					},
-				],
-			});
-		} else {
-			if (dataEntryObject.wildlife_affected.length > 0) {
-				setDataEntryObject({
-					...dataEntryObject,
-					wildlife_affected: dataEntryObject.wildlife_affected.filter(
-						(item) => item.name !== event.target.value
-					),
-				});
-			}
-		}
-	};
+	useEffect(() => {
+		dataEntryService.getSourceSystemType().then((data) => {
+			console.log(data.data);
+			setSst(data.data);
+		});
+		dataEntryService.getSourceSystem().then((data) => {
+			console.log(data.data);
+			setSs(data.data);
+		});
+		dataEntryService.getNWCGReportingAgency().then((data) => {
+			console.log(data.data);
+			setNwcg(data.data);
+		});
+		dataEntryService.getStatCauseCode().then((data) => {
+			console.log(data.data);
+			setFc(data.data);
+		});
+		dataEntryService.getOwnerCode().then((data) => {
+			console.log(data.data);
+			setOwn(data.data);
+		});
+	}, []);
 
 	const [dataEntryObject, setDataEntryObject] = useState({
 		latitude: "",
 		longitude: "",
-		latD: "",
-		latM: 0,
-		latS: 0,
-		lonD: "",
-		lonM: 0,
-		lonS: 0,
-		record_type: "M",
-		date_of_fire: "",
-		fire_start_time: "",
-		fire_control_date: "",
-		fire_control_time: "",
-		area_damaged: "",
-		species_damaged: [],
-		wildlife_affected: [],
-		photo_path: "",
-		other_info: "",
-		submitted: false,
-		accepted: false,
-		reconsider: false,
-		username: JSON.parse(localStorage.getItem("user")).username,
-		division: JSON.parse(localStorage.getItem("user")).division,
+		source_system_type: "",
+		source_system: "",
+		nwcg_reporting_agency: "",
+		discovery_date: "",
+		discovery_time: "",
+		cont_date: "",
+		cont_time: "",
+		state: "",
+		stat_cause_code: "",
+		owner_code: "",
 	});
 
 	useEffect(() => {
@@ -165,55 +66,43 @@ const DataEntryForm = () => {
 			error: false,
 			msg: "",
 		},
-		latD: {
+		source_system_type: {
 			error: false,
 			msg: "",
 		},
-		latM: {
+		source_system: {
 			error: false,
 			msg: "",
 		},
-		latS: {
+		nwcg_reporting_agency: {
 			error: false,
 			msg: "",
 		},
-		lonD: {
+		discovery_date: {
 			error: false,
 			msg: "",
 		},
-		lonM: {
+		discovery_time: {
 			error: false,
 			msg: "",
 		},
-		lonS: {
+		cont_date: {
 			error: false,
 			msg: "",
 		},
-		date_of_fire: {
+		cont_time: {
 			error: false,
 			msg: "",
 		},
-		fire_start_time: {
+		state: {
 			error: false,
 			msg: "",
 		},
-		fire_control_date: {
+		stat_cause_code: {
 			error: false,
 			msg: "",
 		},
-		fire_control_time: {
-			error: false,
-			msg: "",
-		},
-		area_damaged: {
-			error: false,
-			msg: "",
-		},
-		species_damaged: {
-			error: false,
-			msg: "",
-		},
-		wildlife_affected: {
+		owner_code: {
 			error: false,
 			msg: "",
 		},
@@ -235,63 +124,35 @@ const DataEntryForm = () => {
 		} else {
 			dataEntryService
 				.postData({
-					latitude:
-						dataEntryObject.latD +
-						";" +
-						dataEntryObject.latM +
-						";" +
-						dataEntryObject.latS,
-					longitude:
-						dataEntryObject.lonD +
-						";" +
-						dataEntryObject.lonM +
-						";" +
-						dataEntryObject.lonS,
-					date_of_fire: dataEntryObject.date_of_fire,
-					fire_start_time: dataEntryObject.fire_start_time,
-					fire_control_date: dataEntryObject.fire_control_date,
-					fire_control_time: dataEntryObject.fire_control_time,
-					area_damaged: dataEntryObject.area_damaged,
-					record_type: "M",
-					species_damaged: dataEntryObject.species_damaged,
-					wildlife_affected: dataEntryObject.wildlife_affected,
-					photo_path: dataEntryObject.photo_path,
-					other_info: dataEntryObject.other_info,
-					username: JSON.parse(localStorage.getItem("user")).username,
-					division: JSON.parse(localStorage.getItem("user")).division,
-					submitted: false,
-					reconsider: false,
-					accepted: false,
+					latitude: dataEntryObject.latitude,
+					longitude: dataEntryObject.longitude,
+					source_system_type: dataEntryObject.source_system_type,
+					source_system: dataEntryObject.source_system,
+					nwcg_reporting_agency: dataEntryObject.nwcg_reporting_agency,
+					discovery_date: dataEntryObject.discovery_date,
+					discovery_time: dataEntryObject.discovery_time,
+					cont_date: dataEntryObject.cont_date,
+					cont_time: dataEntryObject.cont_time,
+					state: dataEntryObject.state,
+					stat_cause_code: dataEntryObject.stat_cause_code,
+					owner_code: dataEntryObject.owner_code,
 				})
 				.then((data) => {
 					console.log(data);
 					setAlert("Data Entry Saved!", "success");
-					setTotalNum([]);
-					setChecked([]);
 					setDataEntryObject({
 						longitude: "",
 						latitude: "",
-						latD: "",
-						latM: 0,
-						latS: 0,
-						lonD: "",
-						lonM: 0,
-						lonS: 0,
-						record_type: "M",
-						date_of_fire: "",
-						fire_start_time: "",
-						fire_control_date: "",
-						fire_control_time: "",
-						area_damaged: "",
-						species_damaged: [],
-						wildlife_affected: [],
-						photo_path: "",
-						other_info: "",
-						username: JSON.parse(localStorage.getItem("user")).username,
-						division: JSON.parse(localStorage.getItem("user")).division,
-						submitted: false,
-						reconsider: false,
-						accepted: false,
+						source_system_type: "",
+						source_system: "",
+						nwcg_reporting_agency: "",
+						discovery_date: "",
+						discovery_time: "",
+						cont_date: "",
+						cont_time: "",
+						state: "",
+						stat_cause_code: "",
+						owner_code: "",
 					});
 				})
 				.catch((error) => {
@@ -311,16 +172,6 @@ const DataEntryForm = () => {
 		console.log(dataEntryObject);
 	}, [dataEntryObject]);
 
-	useEffect(() => {
-		dataEntryService.getSpeciesData().then((data) => {
-			console.log(data);
-			setSpecies(data.data);
-		});
-		dataEntryService.getWildlifeData().then((data) => {
-			setWildlife(data.data);
-		});
-	}, []);
-
 	return (
 		<>
 			<Grid container className="mt-3">
@@ -328,252 +179,244 @@ const DataEntryForm = () => {
 					<div className="container m-2">
 						<form class="row g-3 needs-validation" novalidate>
 							<div className="col-md-6">
-								<label for="latD">Latitude(N)</label>
-								<div className="input-group">
-									<input
-										type="number"
-										min={0}
-										max={90}
-										className={
-											dataEntryError.latD.error
-												? "form-control is-invalid"
-												: "form-control"
-										}
-										id="latD"
-										value={dataEntryObject.latD}
-										onChange={handleChange}
-										required
-									/>
-									<span class="input-group-text">°</span>
-									<input
-										type="number"
-										min={0}
-										className={
-											dataEntryError.latM.error
-												? "form-control is-invalid"
-												: "form-control"
-										}
-										id="latM"
-										value={dataEntryObject.latM}
-										onChange={handleChange}
-										required
-									/>
-									<span class="input-group-text">'</span>
-									<input
-										type="number"
-										min={0}
-										className={
-											dataEntryError.latS.error
-												? "form-control is-invalid"
-												: "form-control"
-										}
-										id="latS"
-										value={dataEntryObject.latS}
-										onChange={handleChange}
-										required
-									/>
-									<span class="input-group-text">''</span>
-									<div class="invalid-feedback">
-										<small>{dataEntryError.latitude["msg"]}</small>
-									</div>
+								<label for="latitude">Latitude</label>
+								<input
+									type="number"
+									className={
+										dataEntryError.latitude.error
+											? "form-control is-invalid"
+											: "form-control"
+									}
+									id="latitude"
+									value={dataEntryObject.latitude}
+									onChange={handleChange}
+									required
+								/>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.latitude["msg"]}</small>
 								</div>
 							</div>
 							<div className="col-md-6">
-								<label for="lonD">Longitude(E)</label>
-								<div className="input-group">
-									<input
-										type="number"
-										min={0}
-										max={90}
-										className={
-											dataEntryError.lonD.error
-												? "form-control is-invalid"
-												: "form-control"
-										}
-										id="lonD"
-										value={dataEntryObject.lonD}
-										onChange={handleChange}
-										required
-									/>
-									<span class="input-group-text">°</span>
-									<input
-										type="number"
-										min={0}
-										className={
-											dataEntryError.lonM.error
-												? "form-control is-invalid"
-												: "form-control"
-										}
-										id="lonM"
-										value={dataEntryObject.lonM}
-										onChange={handleChange}
-										required
-									/>
-									<span class="input-group-text">'</span>
-									<input
-										type="number"
-										min={0}
-										className={
-											dataEntryError.lonS.error
-												? "form-control is-invalid"
-												: "form-control"
-										}
-										id="lonS"
-										value={dataEntryObject.lonS}
-										onChange={handleChange}
-										required
-									/>
-									<span class="input-group-text">''</span>
-									<div class="invalid-feedback">
-										<small>{dataEntryError.longitude["msg"]}</small>
-									</div>
+								<label for="longitude">Longitude</label>
+								<input
+									type="number"
+									className={
+										dataEntryError.longitude.error
+											? "form-control is-invalid"
+											: "form-control"
+									}
+									id="longitude"
+									value={dataEntryObject.longitude}
+									onChange={handleChange}
+									required
+								/>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.longitude["msg"]}</small>
+								</div>
+							</div>
+							<div className="col-md-4">
+								<label for="source_system_type">Source System Type</label>
+								<select
+									type="text"
+									className={
+										dataEntryError.source_system_type.error
+											? "form-control is-invalid"
+											: "form-control"
+									}
+									id="source_system_type"
+									value={dataEntryObject.source_system_type}
+									onChange={handleChange}
+									required
+								>
+									{sst.map((s) => (
+										<option>{s.name}</option>
+									))}
+								</select>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.source_system_type["msg"]}</small>
+								</div>
+							</div>
+							<div className="col-md-4">
+								<label for="source_system">Source System</label>
+								<select
+									type="text"
+									className={
+										dataEntryError.source_system.error
+											? "form-control is-invalid"
+											: "form-control"
+									}
+									id="source_system"
+									value={dataEntryObject.source_system}
+									onChange={handleChange}
+									required
+								>
+									{ss.map((s) => (
+										<option>{s.name}</option>
+									))}
+								</select>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.source_system["msg"]}</small>
+								</div>
+							</div>
+							<div className="col-md-4">
+								<label for="nwcg_reporting_agency">NWCG Reporting Agency</label>
+								<select
+									type="text"
+									className={
+										dataEntryError.nwcg_reporting_agency.error
+											? "form-control is-invalid"
+											: "form-control"
+									}
+									id="nwcg_reporting_agency"
+									value={dataEntryObject.nwcg_reporting_agency}
+									onChange={handleChange}
+									required
+								>
+									{nwcg.map((n) => (
+										<option>{n.name}</option>
+									))}
+								</select>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.nwcg_reporting_agency["msg"]}</small>
 								</div>
 							</div>
 							<div className="col-md-3">
-								<label for="date_of_fire">Date of Fire</label>
+								<label for="discovery_date">Discovery Date</label>
 								<input
 									type="date"
 									className={
-										dataEntryError.date_of_fire.error
+										dataEntryError.discovery_date.error
 											? "form-control is-invalid"
 											: "form-control"
 									}
-									id="date_of_fire"
-									value={dataEntryObject.date_of_fire}
+									id="discovery_date"
+									value={dataEntryObject.discovery_date}
 									onChange={handleChange}
 									required
 								/>
 								<div class="invalid-feedback">
-									<small>{dataEntryError.date_of_fire["msg"]}</small>
+									<small>{dataEntryError.discovery_date["msg"]}</small>
 								</div>
 							</div>
 							<div className="col-md-3">
-								<label for="fire_start_time">Fire Start Time</label>
+								<label for="discovery_time">Discovery Time</label>
 								<input
 									type="time"
 									className={
-										dataEntryError.fire_start_time.error
+										dataEntryError.discovery_time.error
 											? "form-control is-invalid"
 											: "form-control"
 									}
-									id="fire_start_time"
-									value={dataEntryObject.fire_start_time}
+									id="discovery_time"
+									value={dataEntryObject.discovery_time}
 									onChange={handleChange}
 									required
 								/>
 								<div class="invalid-feedback">
-									<small>{dataEntryError.fire_start_time["msg"]}</small>
+									<small>{dataEntryError.discovery_time["msg"]}</small>
 								</div>
 							</div>
 							<div className="col-md-3">
-								<label for="fire_control_date">Fire Control Date</label>
+								<label for="cont_date">Control Date</label>
 								<input
 									type="date"
 									className={
-										dataEntryError.fire_control_date.error
+										dataEntryError.cont_date.error
 											? "form-control is-invalid"
 											: "form-control"
 									}
-									id="fire_control_date"
-									value={dataEntryObject.fire_control_date}
+									id="cont_date"
+									value={dataEntryObject.cont_date}
 									onChange={handleChange}
 									required
 								/>
 								<div class="invalid-feedback">
-									<small>{dataEntryError.fire_control_date["msg"]}</small>
+									<small>{dataEntryError.cont_date["msg"]}</small>
 								</div>
 							</div>
 							<div className="col-md-3">
-								<label for="fire_control_time">Fire Control Time</label>
+								<label for="cont_time">Control Time</label>
 								<input
 									type="time"
 									className={
-										dataEntryError.fire_control_time.error
+										dataEntryError.cont_time.error
 											? "form-control is-invalid"
 											: "form-control"
 									}
-									id="fire_control_time"
-									value={dataEntryObject.fire_control_time}
+									id="cont_time"
+									value={dataEntryObject.cont_time}
 									onChange={handleChange}
 									required
 								/>
 								<div class="invalid-feedback">
-									<small>{dataEntryError.fire_control_time["msg"]}</small>
+									<small>{dataEntryError.cont_time["msg"]}</small>
 								</div>
 							</div>
-							<div className="col-md-3">
-								<label for="area_damaged">Area Damaged</label>
-								<div className="input-group">
-									<input
-										type="number"
-										min={0}
-										className={
-											dataEntryError.area_damaged.error
-												? "form-control is-invalid"
-												: "form-control"
-										}
-										id="area_damaged"
-										value={dataEntryObject.area_damaged}
-										onChange={handleChange}
-										required
-									/>
-									<span class="input-group-text">ha</span>
-									<div class="invalid-feedback">
-										<small>{dataEntryError.area_damaged["msg"]}</small>
-									</div>
-								</div>
-							</div>
-							<div className="col-md-3">
-								<label for="species_damaged">Species Damaged</label>
-								<Button
+							<div className="col-md-4">
+								<label for="state">State</label>
+								<select
+									type="text"
 									className={
-										dataEntryError.species_damaged.error
+										dataEntryError.state.error
 											? "form-control is-invalid"
 											: "form-control"
 									}
-									onClick={handleClickSpecies}
-								>
-									Species
-								</Button>
-								<div class="invalid-feedback">
-									<small>{dataEntryError.species_damaged["msg"]}</small>
-								</div>
-							</div>
-							<div className="col-md-3">
-								<label for="wildlife_affected">Wildlife Affected</label>
-								<Button
-									className={
-										dataEntryError.wildlife_affected.error
-											? "form-control is-invalid"
-											: "form-control"
-									}
-									onClick={handleClickWildlife}
-								>
-									Wildlife
-								</Button>
-								<div class="invalid-feedback">
-									<small>{dataEntryError.wildlife_affected["msg"]}</small>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<label for="photo_path">Upload Photos</label>
-								<input
-									class="form-control"
-									type="file"
-									id="photo_path"
-									value={dataEntryObject.photo_path}
-									onChange={handleChange}
-								/>
-							</div>
-							<div className="col-md-12">
-								<label for="other_info">Other Information</label>
-								<textarea
-									className="form-control"
-									id="other_info"
-									value={dataEntryObject.other_info}
+									id="state"
+									value={dataEntryObject.state}
 									onChange={handleChange}
 									required
-								/>
+								>
+									{st.map((s) => (
+										<option>{s}</option>
+									))}
+								</select>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.state["msg"]}</small>
+								</div>
+							</div>
+							<div className="col-md-4">
+								<label for="stat_cause_code">Stat Cause Code</label>
+								<select
+									type="text"
+									className={
+										dataEntryError.stat_cause_code.error
+											? "form-control is-invalid"
+											: "form-control"
+									}
+									id="stat_cause_code"
+									value={dataEntryObject.stat_cause_code}
+									onChange={handleChange}
+									required
+								>
+									{fc.map((f) => (
+										<option>{f.name}</option>
+									))}
+								</select>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.stat_cause_code["msg"]}</small>
+								</div>
+							</div>
+							<div className="col-md-4">
+								<label for="owner_code">Owner Code</label>
+								<select
+									type="text"
+									className={
+										dataEntryError.owner_code.error
+											? "form-control is-invalid"
+											: "form-control"
+									}
+									id="owner_code"
+									value={dataEntryObject.owner_code}
+									onChange={handleChange}
+									required
+								>
+									{own.map((o) => (
+										<option>{o.name}</option>
+									))}
+								</select>
+								<div class="invalid-feedback">
+									<small>{dataEntryError.owner_code["msg"]}</small>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -596,102 +439,6 @@ const DataEntryForm = () => {
 					&nbsp;&nbsp;
 				</Grid>
 			</Grid>
-
-			{/* ----------------------------- SPECIES DIALOG ----------------------------------------- */}
-			<Dialog
-				sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 435 } }}
-				maxWidth="xs"
-				open={openSpecies}
-			>
-				<DialogTitle>Choose Species</DialogTitle>
-				<DialogContent dividers>
-					<FormGroup aria-label="species" name="species">
-						{species.map((specie) => (
-							<div
-								style={{
-									display: "inline-block",
-								}}
-							>
-								<FormControlLabel
-									value={specie.name}
-									key={specie.name}
-									control={
-										<Checkbox
-											id="species_name"
-											onChange={handleChangeSpecies}
-											checked={checked[specie.name]}
-										/>
-									}
-									label={specie.name}
-								/>
-								<input
-									disabled={!checked[specie.name]}
-									type="number"
-									id="species_count"
-									name={specie.name}
-									onChange={handleTotalNum}
-									value={totalNum[specie.name]}
-									min={0}
-								/>
-							</div>
-						))}
-					</FormGroup>
-				</DialogContent>
-				<DialogActions>
-					<Button autoFocus onClick={handleCloseSpecies}>
-						Cancel
-					</Button>
-					<Button onClick={handleCloseSpecies}>Ok</Button>
-				</DialogActions>
-			</Dialog>
-
-			{/* ----------------------------- WILDLIFE DIALOG ----------------------------------------- */}
-			<Dialog
-				sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 435 } }}
-				maxWidth="xs"
-				open={openWildlife}
-			>
-				<DialogTitle>Choose Wildlife</DialogTitle>
-				<DialogContent dividers>
-					<FormGroup aria-label="wildlife" name="wildlife">
-						{wildlife.map((wild) => (
-							<div
-								style={{
-									display: "inline-block",
-								}}
-							>
-								<FormControlLabel
-									value={wild.name}
-									key={wild.name}
-									control={
-										<Checkbox
-											id="wildlife_name"
-											onChange={handleChangeWildlife}
-											checked={checked[wild.name]}
-										/>
-									}
-									label={wild.name}
-								/>
-								<input
-									disabled={!checked[wild.name]}
-									type="number"
-									id="wildlife_count"
-									name={wild.name}
-									onChange={handleTotalNumWild}
-									value={totalNum[wild.name]}
-									min={0}
-								/>
-							</div>
-						))}
-					</FormGroup>
-				</DialogContent>
-				<DialogActions>
-					<Button autoFocus onClick={handleCloseWildlife}>
-						Cancel
-					</Button>
-					<Button onClick={handleCloseWildlife}>Ok</Button>
-				</DialogActions>
-			</Dialog>
 		</>
 	);
 };

@@ -2,6 +2,7 @@ package com.example.ForestFirePrediction.SplData.service;
 
 import com.example.ForestFirePrediction.SplData.model.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface SplDataService {
@@ -29,15 +30,30 @@ public interface SplDataService {
 
     //    OWNER
     Owner getOwner(String ownerName);
+
+    void deleteSourceSystemType(String sourceSystemTypeName);
+
     List<Owner> getOwnerList();
     Owner saveOwner(Owner owner);
     void updateOwner(Owner owner);
     void deleteOwner(String ownerName);
 
+    List<SourceSystemType> getSourceSystemTypeList();
+
     //    SOURCE SYSTEM
     SourceSystem getSourceSystem(String sourceSystemName);
     List<SourceSystem> getSourceSystemList();
+
+    SourceSystemType getSourceSystemType(String sourceSystemTypeName);
+
     SourceSystem saveSourceSystem(SourceSystem sourceSystem);
+
+    SourceSystemType saveSourceSystemType(SourceSystemType sourceSystemType);
+
     void updateSourceSystem(SourceSystem sourceSystem);
+
+    @Transactional
+    void updateSourceSystemType(SourceSystemType sourceSystemType);
+
     void deleteSourceSystem(String sourceSystemName);
 }

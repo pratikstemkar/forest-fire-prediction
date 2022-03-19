@@ -18,6 +18,7 @@ public class SplDataServiceImpl implements SplDataService {
     private final FireCauseRepo fireCauseRepo;
     private final FireSizeRepo fireSizeRepo;
     private final SourceSystemRepo sourceSystemRepo;
+    private final SourceSystemTypeRepo sourceSystemTypeRepo;
     private final OwnerRepo ownerRepo;
 
 //    ------------------------------------- NWCGReporting ----------------------------------------------------------------------
@@ -209,7 +210,7 @@ public class SplDataServiceImpl implements SplDataService {
         }
     }
 
-//    ------------------------------------- OWNER -------------------------------------------------------------------
+//    ------------------------------------- SOURCE SYSTEM -------------------------------------------------------------------
 
     @Override
     public List<SourceSystem> getSourceSystemList(){
@@ -270,6 +271,70 @@ public class SplDataServiceImpl implements SplDataService {
             log.info("Deleting SourceSystem: {}...", sourceSystemByName);
             SourceSystem sourceSystem = sourceSystemRepo.findSourceSystemByName(sourceSystemName);
             sourceSystemRepo.delete(sourceSystem);
+        }
+    }
+
+    //    ------------------------------------- SOURCE SYSTEM TYPE -------------------------------------------------------------------
+
+    @Override
+    public List<SourceSystemType> getSourceSystemTypeList(){
+        log.info("Fetching all SourceSystemType List...");
+        return sourceSystemTypeRepo.findAll();
+    }
+
+    @Override
+    public SourceSystemType getSourceSystemType(String sourceSystemTypeName) {
+        Optional<SourceSystemType> sourceSystemTypeByName = Optional.ofNullable(sourceSystemTypeRepo.findSourceSystemTypeByName(sourceSystemTypeName));
+        if(sourceSystemTypeByName.isEmpty()){
+            throw new IllegalStateException("SourceSystemType with name: "+ sourceSystemTypeName +" not found.");
+        }else{
+            log.info("Fetching SourceSystemType {}...", sourceSystemTypeName);
+            SourceSystemType sourceSystemType = sourceSystemTypeRepo.findSourceSystemTypeByName(sourceSystemTypeName);
+            return sourceSystemType;
+        }
+    }
+
+    @Override
+    public SourceSystemType saveSourceSystemType(SourceSystemType sourceSystemType) {
+        Optional<SourceSystemType> sourceSystemTypeByName = Optional.ofNullable(sourceSystemTypeRepo.findSourceSystemTypeByName(sourceSystemType.getName()));
+        if(sourceSystemTypeByName.isPresent()){
+            throw new IllegalStateException("SourceSystemType "+ sourceSystemType.getName() +" Already Present.");
+        }else{
+            log.info("Saving new SourceSystemType {}", sourceSystemType.getName());
+            return sourceSystemTypeRepo.save(sourceSystemType);
+        }
+    }
+
+    @Transactional @Override
+    public void updateSourceSystemType(SourceSystemType sourceSystemType) {
+        Optional<SourceSystemType> sourceSystemTypeById = sourceSystemTypeRepo.findById(sourceSystemType.getId());
+        if(sourceSystemTypeById.isEmpty()){
+            throw new IllegalStateException("SourceSystemType "+sourceSystemType.getName()+" does not exist.");
+        }else{
+            log.info("Updating SourceSystemType: {}...", sourceSystemType.getId());
+            SourceSystemType appSourceSystemType = sourceSystemTypeRepo.findSourceSystemTypeById(sourceSystemType.getId());
+
+            if(sourceSystemType.getName() != null && !Objects.equals(sourceSystemType.getName(), sourceSystemType.getName())){
+                appSourceSystemType.setName(sourceSystemType.getName());
+            }
+            if(sourceSystemType.getDescription() != null && !Objects.equals(sourceSystemType.getDescription(), appSourceSystemType.getDescription())){
+                appSourceSystemType.setDescription(sourceSystemType.getDescription());
+            }
+            if(sourceSystemType.getImg() != null && !Objects.equals(sourceSystemType.getImg(), appSourceSystemType.getImg())){
+                appSourceSystemType.setImg(sourceSystemType.getImg());
+            }
+        }
+    }
+
+    @Override
+    public void deleteSourceSystemType(String sourceSystemTypeName) {
+        Optional<SourceSystemType> sourceSystemTypeByName = Optional.ofNullable(sourceSystemTypeRepo.findSourceSystemTypeByName(sourceSystemTypeName));
+        if(sourceSystemTypeByName.isEmpty()){
+            throw new IllegalStateException("SourceSystemType with name: " + sourceSystemTypeName + " does not exist.");
+        }else{
+            log.info("Deleting SourceSystemType: {}...", sourceSystemTypeByName);
+            SourceSystemType sourceSystemType = sourceSystemTypeRepo.findSourceSystemTypeByName(sourceSystemTypeName);
+            sourceSystemTypeRepo.delete(sourceSystemType);
         }
     }
 

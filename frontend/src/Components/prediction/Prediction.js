@@ -18,6 +18,7 @@ import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 
 import { Outlet, Link } from "react-router-dom";
+import FireCount from "./FireCount";
 
 const Prediction = () => {
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -41,9 +42,9 @@ const Prediction = () => {
 
 	return (
 		<>
-			<div className="container">
-				<div className="row mt-2">
-					<div className="col-2">
+			{/* <div className="container"> */}
+			{/* <div className="row"> */}
+			{/* <div className="col-2">
 						<div className="card" style={{ height: "calc(100vh - 80px)" }}>
 							<div className="card-body" style={{ padding: "0px" }}>
 								<List
@@ -57,7 +58,7 @@ const Prediction = () => {
 										<ListItemIcon>
 											<InboxIcon />
 										</ListItemIcon>
-										<ListItemText primary="Category 1" />
+										<ListItemText primary="Fire Func" />
 										{open1 ? <ExpandLess /> : <ExpandMore />}
 									</ListItemButton>
 									<Collapse in={open1} timeout="auto" unmountOnExit>
@@ -95,109 +96,15 @@ const Prediction = () => {
 											</ListItem>
 										</List>
 									</Collapse>
-									<Divider />
-									<ListItemButton onClick={handleClick2}>
-										<ListItemIcon>
-											<InboxIcon />
-										</ListItemIcon>
-										<ListItemText primary="Category 2" />
-										{open2 ? <ExpandLess /> : <ExpandMore />}
-									</ListItemButton>
-									<Collapse in={open2} timeout="auto" unmountOnExit>
-										<List disablePadding>
-											<ListItem disablePadding>
-												<ListItemButton
-													component="a"
-													href="/prediction/firestatistics"
-													selected={
-														window.location.pathname ===
-														"/prediction/firestatistics"
-													}
-													onClick={(event) => handleListItemClick(event, 2)}
-												>
-													<ListItemIcon>
-														<QueryStatsIcon />
-													</ListItemIcon>
-													<ListItemText primary="Fire Statistics" />
-												</ListItemButton>
-											</ListItem>
-											<ListItem disablePadding>
-												<ListItemButton
-													selected={selectedIndex === 3}
-													onClick={(event) => handleListItemClick(event, 3)}
-												>
-													<ListItemIcon>
-														<ModelTrainingIcon />
-													</ListItemIcon>
-													<ListItemText primary="Model Training" />
-												</ListItemButton>
-											</ListItem>
-											<ListItem disablePadding>
-												<ListItemButton
-													selected={selectedIndex === 4}
-													onClick={(event) => handleListItemClick(event, 4)}
-												>
-													<ListItemIcon>
-														<PetsIcon />
-													</ListItemIcon>
-													<ListItemText primary="Wildlife Data" />
-												</ListItemButton>
-											</ListItem>
-										</List>
-									</Collapse>
-									<Divider />
-									<ListItemButton onClick={handleClick3}>
-										<ListItemIcon>
-											<InboxIcon />
-										</ListItemIcon>
-										<ListItemText primary="Category 3" />
-										{open3 ? <ExpandLess /> : <ExpandMore />}
-									</ListItemButton>
-									<Collapse in={open3} timeout="auto" unmountOnExit>
-										<List disablePadding>
-											<ListItem disablePadding>
-												<ListItemButton
-													selected={selectedIndex === 5}
-													onClick={(event) => handleListItemClick(event, 5)}
-												>
-													<ListItemIcon>
-														<InboxIcon />
-													</ListItemIcon>
-													<ListItemText primary="Inbox" />
-												</ListItemButton>
-											</ListItem>
-											<ListItem disablePadding>
-												<ListItemButton
-													selected={selectedIndex === 6}
-													onClick={(event) => handleListItemClick(event, 6)}
-												>
-													<ListItemIcon>
-														<DraftsIcon />
-													</ListItemIcon>
-													<ListItemText primary="Spam Folder" />
-												</ListItemButton>
-											</ListItem>
-										</List>
-									</Collapse>
 								</List>
 							</div>
 						</div>
-					</div>
-					<div className="col-10">
-						{window.location.pathname === "/prediction" ? (
-							<div className="text-center">
-								<img
-									src="https://cdn.discordapp.com/attachments/909801322436505600/934361954343071744/man-finding-way-from-paper-map-with-boy-holding-lantern.png"
-									style={{ height: "80%" }}
-									alt="Illus"
-								/>
-							</div>
-						) : (
-							<Outlet />
-						)}
-					</div>
-				</div>
-			</div>
+					</div> */}
+			{/* <div className="col"> */}
+			<FireCount />
+			{/* </div> */}
+			{/* </div> */}
+			{/* </div> */}
 		</>
 	);
 };

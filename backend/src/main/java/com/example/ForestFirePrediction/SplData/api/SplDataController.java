@@ -204,4 +204,39 @@ public class SplDataController {
         splDataService.updateSourceSystem(sourceSystem);
         return ResponseEntity.ok().body("SourceSystem updated." );
     }
+
+    //    ------------------------------------------- SOURCE SYSTEM TYPE ---------------------------------------------------------------
+
+    //    Get all SourceSystemType
+    @GetMapping("/sourcesystemtypes")
+    public ResponseEntity<List<SourceSystemType>> getSourceSystemType(){
+        return ResponseEntity.ok().body(splDataService.getSourceSystemTypeList());
+    }
+
+    //    Get a specific SourceSystemType
+    @GetMapping("/sourcesystemtype/{sourceSystemTypeName}")
+    public ResponseEntity<SourceSystemType> getSourceSystemType(@PathVariable("sourceSystemTypeName") String sourceSystemTypeName){
+        return ResponseEntity.ok().body(splDataService.getSourceSystemType(sourceSystemTypeName));
+    }
+
+    //    Save a new SourceSystemType
+    @PostMapping("/sourcesystemtype/save")
+    public ResponseEntity<SourceSystemType> saveSourceSystemType(@RequestBody SourceSystemType sourceSystemType){
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/spldata/sourcesystemtype/save").toUriString());
+        return ResponseEntity.created(uri).body(splDataService.saveSourceSystemType(sourceSystemType));
+    }
+
+    //    Delete a SourceSystemType
+    @DeleteMapping("/sourcesystemtype/delete/{sourceSystemTypeName}")
+    public ResponseEntity<?> deleteSourceSystemType(@PathVariable("sourceSystemTypeName") String sourceSystemTypeName){
+        splDataService.deleteSourceSystemType(sourceSystemTypeName);
+        return ResponseEntity.ok().body("SourceSystemType deleted with name: " + sourceSystemTypeName);
+    }
+
+    //    Update details of a SourceSystemType
+    @PutMapping("/sourcesystemtype/update")
+    public ResponseEntity<?> updateSourceSystemType(@RequestBody SourceSystemType sourceSystemType){
+        splDataService.updateSourceSystemType(sourceSystemType);
+        return ResponseEntity.ok().body("SourceSystemType updated." );
+    }
 }
