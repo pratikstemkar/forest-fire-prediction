@@ -17,11 +17,8 @@ import dataEntryService from "../../Services/dataEntryService";
 import { DrawerContext } from "../../Contexts/DrawerContext";
 
 const Landing = () => {
-	const { isAuthenticated } = useContext(AuthContext);
+	const { isAuthenticated, user } = useContext(AuthContext);
 	const { setPathName } = useContext(DrawerContext);
-
-	const theme = useTheme();
-	const isMatch = useMediaQuery(theme.breakpoints.down("md"));
 
 	const [dataCount, setDataCount] = useState(0);
 
@@ -83,36 +80,74 @@ const Landing = () => {
 								</React.Fragment>
 							</Card>
 						</div>
-						{isAuthenticated ? (
+						{isAuthenticated && !user.roles.includes("ROLE_ADMIN") ? (
 							<div className="col d-flex justify-content-center mb-2">
 								<Box sx={{ minWidth: 275, maxWidth: "50%" }}>
 									<Card variant="outlined">
 										<React.Fragment>
-											<CardContent>
-												<Typography
-													sx={{ fontSize: 14 }}
-													color="text.secondary"
-													gutterBottom
-												>
-													Nearby
-												</Typography>
-												<Typography variant="h5" component="div">
-													Forest Fire?
-												</Typography>
-												<Typography sx={{ mb: 1.5 }} color="text.secondary">
-													Report incident
-												</Typography>
-												<Typography variant="body2">
-													using our system.
-													<br />
-													&nbsp;
-												</Typography>
-											</CardContent>
-											<CardActions>
-												<Link to="/login" style={{ textDecoration: "none" }}>
-													<Button size="small">Report Incident</Button>
-												</Link>
-											</CardActions>
+											{user.roles.includes("ROLE_RO") ? (
+												<>
+													<CardContent>
+														<Typography
+															sx={{ fontSize: 14 }}
+															color="text.secondary"
+															gutterBottom
+														>
+															Nearby
+														</Typography>
+														<Typography variant="h5" component="div">
+															Forest Fire?
+														</Typography>
+														<Typography sx={{ mb: 1.5 }} color="text.secondary">
+															Report incident
+														</Typography>
+														<Typography variant="body2">
+															using our system.
+															<br />
+															&nbsp;
+														</Typography>
+													</CardContent>
+													<CardActions>
+														<Link
+															to="/login"
+															style={{ textDecoration: "none" }}
+														>
+															<Button size="small">Report Incident</Button>
+														</Link>
+													</CardActions>
+												</>
+											) : (
+												<>
+													<CardContent>
+														<Typography
+															sx={{ fontSize: 14 }}
+															color="text.secondary"
+															gutterBottom
+														>
+															Nearby
+														</Typography>
+														<Typography variant="h5" component="div">
+															Forest Fire?
+														</Typography>
+														<Typography sx={{ mb: 1.5 }} color="text.secondary">
+															Predict Fire Area
+														</Typography>
+														<Typography variant="body2">
+															using our system.
+															<br />
+															&nbsp;
+														</Typography>
+													</CardContent>
+													<CardActions>
+														<Link
+															to="/login"
+															style={{ textDecoration: "none" }}
+														>
+															<Button size="small">Predict Fire</Button>
+														</Link>
+													</CardActions>
+												</>
+											)}
 										</React.Fragment>
 									</Card>
 								</Box>

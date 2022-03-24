@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-	API_URL,
 	DATA_COUNT,
 	DATA_UPDATE_URL,
 	DATA_URL,
@@ -16,7 +15,7 @@ class dataEntryService {
 	postData = (dataEntryObject) => {
 		const config = {
 			method: "post",
-			url: `${API_URL}${DATA_SAVE_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${DATA_SAVE_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -29,7 +28,7 @@ class dataEntryService {
 	getData = () => {
 		const config = {
 			method: "get",
-			url: `${API_URL}${DATA_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${DATA_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -40,7 +39,7 @@ class dataEntryService {
 	updateData = (dataEntry) => {
 		const config = {
 			method: "put",
-			url: `${API_URL}${DATA_UPDATE_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${DATA_UPDATE_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -50,9 +49,10 @@ class dataEntryService {
 	};
 
 	getDataCount = () => {
+		console.log(process.env);
 		var config = {
 			method: "get",
-			url: `${API_URL}${DATA_COUNT}`,
+			url: `${process.env.REACT_APP_API_URL}${DATA_COUNT}`,
 			headers: { "Content-Type": "application/json" },
 		};
 
@@ -62,7 +62,7 @@ class dataEntryService {
 	getSourceSystemType = () => {
 		var config = {
 			method: "get",
-			url: `${API_URL}${GSSYST_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${GSSYST_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -74,7 +74,7 @@ class dataEntryService {
 	getSourceSystem = () => {
 		var config = {
 			method: "get",
-			url: `${API_URL}${GSSYS_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${GSSYS_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -86,7 +86,7 @@ class dataEntryService {
 	getNWCGReportingAgency = () => {
 		var config = {
 			method: "get",
-			url: `${API_URL}${GNWCG_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${GNWCG_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -98,7 +98,7 @@ class dataEntryService {
 	getStatCauseCode = () => {
 		var config = {
 			method: "get",
-			url: `${API_URL}${GFCAUSE_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${GFCAUSE_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -110,7 +110,7 @@ class dataEntryService {
 	getOwnerCode = () => {
 		var config = {
 			method: "get",
-			url: `${API_URL}${GOWNER_URL}`,
+			url: `${process.env.REACT_APP_API_URL}${GOWNER_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 			},

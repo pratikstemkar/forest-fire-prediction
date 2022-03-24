@@ -2,7 +2,6 @@ import { createContext, useReducer, useContext } from "react";
 import axios from "axios";
 
 import {
-	API_URL,
 	AUTH_URL,
 	CPFP_URL,
 	CP_URL,
@@ -60,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 				"Bearer " + JSON.parse(localStorage.getItem("user")).access_token;
 
 			axios
-				.get(`${API_URL}${AUTH_URL}`, {
+				.get(`${process.env.REACT_APP_API_URL}${AUTH_URL}`, {
 					headers: { Authorization: token },
 				})
 				.then(function (response) {
@@ -96,7 +95,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${LOGIN_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${LOGIN_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -132,7 +131,7 @@ export const AuthProvider = ({ children }) => {
 			newpassword: nPassword,
 		};
 		axios
-			.put(`${API_URL}${CP_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${CP_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -157,7 +156,7 @@ export const AuthProvider = ({ children }) => {
 			newusername: newusername,
 		};
 		axios
-			.put(`${API_URL}${CU_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${CU_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -183,7 +182,7 @@ export const AuthProvider = ({ children }) => {
 			pfp: pfp,
 		};
 		axios
-			.put(`${API_URL}${CPFP_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${CPFP_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -219,7 +218,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${SU_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${SU_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
@@ -243,7 +242,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DU_URL}${username}`)
+			.delete(`${process.env.REACT_APP_API_URL}${DU_URL}${username}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -273,7 +272,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.put(`${API_URL}${UU_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${UU_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -303,7 +302,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${SR_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${SR_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
@@ -334,7 +333,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.put(`${API_URL}${UR_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${UR_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -355,7 +354,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DR_URL}${name}`)
+			.delete(`${process.env.REACT_APP_API_URL}${DR_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -382,7 +381,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${SFCAUSE_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${SFCAUSE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
@@ -412,7 +411,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.put(`${API_URL}${UFCAUSE_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${UFCAUSE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -436,7 +435,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DFCAUSE_URL}${name}`)
+			.delete(`${process.env.REACT_APP_API_URL}${DFCAUSE_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -467,7 +466,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${SOWNER_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${SOWNER_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
@@ -497,7 +496,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.put(`${API_URL}${UOWNER_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${UOWNER_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -518,7 +517,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DOWNER_URL}${name}`)
+			.delete(`${process.env.REACT_APP_API_URL}${DOWNER_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -547,7 +546,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${SFSIZE_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${SFSIZE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
@@ -578,7 +577,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.put(`${API_URL}${UFSIZE_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${UFSIZE_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -602,7 +601,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DFSIZE_URL}${grade}`)
+			.delete(`${process.env.REACT_APP_API_URL}${DFSIZE_URL}${grade}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -634,7 +633,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${SSSYS_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${SSSYS_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
@@ -665,7 +664,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.put(`${API_URL}${USSYS_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${USSYS_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -689,7 +688,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DSSYS_URL}${name}`)
+			.delete(`${process.env.REACT_APP_API_URL}${DSSYS_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -720,7 +719,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.post(`${API_URL}${SNWCG_URL}`, payload)
+			.post(`${process.env.REACT_APP_API_URL}${SNWCG_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 201) {
 					dispatch({
@@ -751,7 +750,7 @@ export const AuthProvider = ({ children }) => {
 		};
 
 		axios
-			.put(`${API_URL}${UNWCG_URL}`, payload)
+			.put(`${process.env.REACT_APP_API_URL}${UNWCG_URL}`, payload)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({
@@ -775,7 +774,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 
 		axios
-			.delete(`${API_URL}${DNWCG_URL}${name}`)
+			.delete(`${process.env.REACT_APP_API_URL}${DNWCG_URL}${name}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					dispatch({

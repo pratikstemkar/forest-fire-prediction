@@ -29,7 +29,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { API_URL, GNWCG_URL, NWCG_URL } from "../../constants";
+import { GNWCG_URL, NWCG_URL } from "../../constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -139,7 +139,7 @@ const NWCGReportingPanel = (props) => {
 	// UPDATE NWCGReporting
 	const handleNWCGReportingUpdateOpen = (NWCGReportingname) => {
 		axios
-			.get(`${API_URL}${NWCG_URL}${NWCGReportingname}`)
+			.get(`${process.env.REACT_APP_API_URL}${NWCG_URL}${NWCGReportingname}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setUpdateNWCGReporting({
@@ -237,7 +237,7 @@ const NWCGReportingPanel = (props) => {
 	// LOAD NWCGReporting AT RELOAD
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${GNWCG_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${GNWCG_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setNWCGReportingState((prevNWCGReportingState) => ({

@@ -29,7 +29,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { API_URL, GSSYS_URL, SSYS_URL } from "../../constants";
+import { GSSYS_URL, SSYS_URL } from "../../constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -134,7 +134,7 @@ const SourceSystemPanel = (props) => {
 	// UPDATE SourceSystem
 	const handleSourceSystemUpdateOpen = (SourceSystemname) => {
 		axios
-			.get(`${API_URL}${SSYS_URL}${SourceSystemname}`)
+			.get(`${process.env.REACT_APP_API_URL}${SSYS_URL}${SourceSystemname}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setUpdateSourceSystem({
@@ -232,7 +232,7 @@ const SourceSystemPanel = (props) => {
 	// LOAD SourceSystem AT RELOAD
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${GSSYS_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${GSSYS_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setSourceSystemState((prevSourceSystemState) => ({

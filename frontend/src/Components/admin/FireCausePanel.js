@@ -29,7 +29,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { API_URL, GFCAUSE_URL, FCAUSE_URL } from "../../constants";
+import { GFCAUSE_URL, FCAUSE_URL } from "../../constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -126,7 +126,7 @@ const FireCausePanel = (props) => {
 	// UPDATE FireCause
 	const handleFireCauseUpdateOpen = (FireCausename) => {
 		axios
-			.get(`${API_URL}${FCAUSE_URL}${FireCausename}`)
+			.get(`${process.env.REACT_APP_API_URL}${FCAUSE_URL}${FireCausename}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setUpdateFireCause({
@@ -222,7 +222,7 @@ const FireCausePanel = (props) => {
 	// LOAD FireCauseS AT RELOAD
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${GFCAUSE_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${GFCAUSE_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setFireCauseState((prevFireCauseState) => ({

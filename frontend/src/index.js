@@ -9,7 +9,6 @@ import { LatLongProvider } from "./Contexts/LatLongContext";
 import { DataEntryProvider } from "./Contexts/DataEntryContext";
 import { DrawerProvider } from "./Contexts/DrawerContext";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 ReactDOM.render(

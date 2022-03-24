@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { API_URL, AU_URL, USER_URL, GR_URL } from "../../constants";
+import { AU_URL, USER_URL, GR_URL } from "../../constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 
 import Alert from "@mui/material/Alert";
@@ -78,7 +78,7 @@ const AdminPanel = () => {
 	// LOAD USERS IN TABLE
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${AU_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${AU_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setState((prevState) => ({
@@ -102,7 +102,7 @@ const AdminPanel = () => {
 
 	const handleRefresh = () => {
 		axios
-			.get(`${API_URL}${AU_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${AU_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setState((prevState) => ({
@@ -128,7 +128,7 @@ const AdminPanel = () => {
 
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${GR_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${GR_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setState((prevState) => ({
@@ -211,20 +211,22 @@ const AdminPanel = () => {
 
 	// UPDATE USER
 	const handleClickOpen = (username) => {
-		axios.get(`${API_URL}${USER_URL}${username}`).then(function (response) {
-			if (response.status === 200) {
-				setUser((prevUser) => ({
-					...prevUser,
-					userid: response.data.id,
-					username: response.data.username,
-					designation: response.data.designation,
-					pfp: response.data.pfp,
-				}));
-				console.log(response.data);
-			} else {
-				console.log("error");
-			}
-		});
+		axios
+			.get(`${process.env.REACT_APP_API_URL}${USER_URL}${username}`)
+			.then(function (response) {
+				if (response.status === 200) {
+					setUser((prevUser) => ({
+						...prevUser,
+						userid: response.data.id,
+						username: response.data.username,
+						designation: response.data.designation,
+						pfp: response.data.pfp,
+					}));
+					console.log(response.data);
+				} else {
+					console.log("error");
+				}
+			});
 		setOpen(true);
 		setState((prevState) => ({
 			...prevState,
@@ -410,17 +412,6 @@ const AdminPanel = () => {
 						size={isMatch ? "small" : "medium"}
 					>
 						Roles
-					</Button>
-					&nbsp;&nbsp;&nbsp;
-					<Button
-						color="primary"
-						startIcon={<LocalFireDepartmentIcon />}
-						variant="contained"
-						onClick={handleFireSizeOpen}
-						className="mb-2"
-						size={isMatch ? "small" : "medium"}
-					>
-						Fire Size
 					</Button>
 					&nbsp;&nbsp;&nbsp;
 					<Button

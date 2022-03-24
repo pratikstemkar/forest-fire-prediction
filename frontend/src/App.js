@@ -20,9 +20,6 @@ import Logout from "./Components/auth/Logout";
 import Register from "./Components/auth/Register";
 import Developers from "./Components/layout/Developers";
 import Prediction from "./Components/prediction/Prediction";
-import FireCount from "./Components/prediction/FireCount";
-import FirePrediction from "./Components/prediction/FirePrediction";
-import FireStat from "./Components/prediction/FireStat";
 
 function App() {
 	const { loadUser, logout } = useContext(AuthContext);
@@ -32,7 +29,7 @@ function App() {
 
 		jwt.verify(
 			JSON.parse(localStorage.getItem("user")).access_token,
-			"secret",
+			process.env.REACT_APP_AXIOS_SECRET,
 			function (err, decode) {
 				if (err) {
 					console.log(err);

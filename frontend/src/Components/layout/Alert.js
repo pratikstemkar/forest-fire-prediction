@@ -14,11 +14,6 @@ const AlertUI = () => {
 		clearAlerts();
 	};
 
-	const d = {
-		top: "top",
-		center: "center",
-	};
-
 	return (
 		<>
 			{alerts.length > 0
