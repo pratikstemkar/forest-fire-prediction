@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 import { Grid, Avatar } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LoginLogo from "../../Assets/img/login8.svg";
 import LoginIcon from "@mui/icons-material/Login";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { DrawerContext } from "../../Contexts/DrawerContext";
@@ -129,7 +128,7 @@ const Login = () => {
 						<>
 							<div className="col text-center">
 								<img
-									src={LoginLogo}
+									src="https://i.pinimg.com/originals/8a/e2/e9/8ae2e920ae453438cc374a83c7665bab.gif"
 									alt="Login Logo"
 									style={{
 										width: "60%",

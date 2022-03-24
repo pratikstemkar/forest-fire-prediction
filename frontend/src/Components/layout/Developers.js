@@ -1,6 +1,5 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
 import Footer from "./Footer";
 
 const Developers = () => {
@@ -17,50 +16,20 @@ const Developers = () => {
 										<Avatar
 											alt="Remy Sharp"
 											sx={{ height: 200, width: 200 }}
-											src="https://gamingpirate.com/wp-content/uploads/2021/07/tz59llw563871-1.jpg"
+											src="https://i.pinimg.com/originals/77/23/d5/7723d5889e1dd0f2700245a0cf52069c.jpg"
 										/>
 									</div>
-									<h5 className="card-title mt-2">Pratik Temkar</h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+									<h5 className="card-title mt-2">
+										<b>Pratik Temkar</b>
+									</h5>
+									<h6 class="card-subtitle mb-2 text-muted">
+										<small>I just want a job</small>
+									</h6>
 									<p class="card-text">
-										Some quick example text to build on the card title and make
-										up the bulk of the card's content.
-									</p>
-									<p className="text-center">
-										<Stack direction="row">
-											<a
-												href="https://linkedin.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="LinkedIn"
-													src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://github.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="GitHub"
-													src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://instagram.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="Instagram"
-													src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
-												/>
-											</a>
-										</Stack>
+										<small>
+											If you don’t want to hire me but like what you see anyway
+											– feel free to connect, I’m young free and single – YOLO.
+										</small>
 									</p>
 								</div>
 							</div>
@@ -74,50 +43,20 @@ const Developers = () => {
 										<Avatar
 											alt="Remy Sharp"
 											sx={{ height: 200, width: 200 }}
-											src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9K_R4yXrB-c0KpV0t-hjeDIB4PQGiarGoPw&usqp=CAU"
+											src="https://cdn.myanimelist.net/s/common/uploaded_files/1442429498-68747eb4ccb3577a96912baed4e16dac.jpeg"
 										/>
 									</div>
-									<h5 className="card-title mt-2">Prem Kulkarni</h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+									<h5 className="card-title mt-2">
+										<b>Prem Kulkarni</b>
+									</h5>
+									<h6 class="card-subtitle mb-2 text-muted">
+										<small>I do what I like</small>
+									</h6>
 									<p class="card-text">
-										Some quick example text to build on the card title and make
-										up the bulk of the card's content.
-									</p>
-									<p className="text-center">
-										<Stack direction="row">
-											<a
-												href="https://linkedin.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="LinkedIn"
-													src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://github.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="GitHub"
-													src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://instagram.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="Instagram"
-													src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
-												/>
-											</a>
-										</Stack>
+										<small>
+											Men want to be me, women want to be with me and companies
+											want to hire me. It’s as simple as that.
+										</small>
 									</p>
 								</div>
 							</div>
@@ -131,50 +70,21 @@ const Developers = () => {
 										<Avatar
 											alt="Remy Sharp"
 											sx={{ height: 200, width: 200 }}
-											src="https://whatifgaming.com/wp-content/uploads/2021/10/anime-girl-pfp-Favim.com-6251177.jpg"
+											src="https://cdn.myanimelist.net/s/common/uploaded_files/1442417844-8e9dfc12449d2bc26d8ca0cabf598afe.jpeg"
 										/>
 									</div>
-									<h5 className="card-title mt-2">Karan Wagh</h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+									<h5 className="card-title mt-2">
+										<b>Karan Wagh</b>
+									</h5>
+									<h6 class="card-subtitle mb-2 text-muted">
+										<small>I know everything</small>
+									</h6>
 									<p class="card-text">
-										Some quick example text to build on the card title and make
-										up the bulk of the card's content.
-									</p>
-									<p className="text-center">
-										<Stack direction="row">
-											<a
-												href="https://linkedin.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="LinkedIn"
-													src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://github.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="GitHub"
-													src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://instagram.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="Instagram"
-													src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
-												/>
-											</a>
-										</Stack>
+										<small>
+											You remember the kid at school, who knew everyone, knew
+											all the latest trends, and even knew how to talk to the
+											girls? That’s me.
+										</small>
 									</p>
 								</div>
 							</div>
@@ -188,50 +98,20 @@ const Developers = () => {
 										<Avatar
 											alt="Remy Sharp"
 											sx={{ height: 200, width: 200 }}
-											src="https://i2.wp.com/lh4.googleusercontent.com/proxy/QA9_bkTF_2wYInioE417wqGhhJNNciE1D42iejo3wLUYxsVJx3rUxOwj-QBJbvlQR_aqNBuND3K3gsSGQ12Kb-jOxBSJcfhVlNogB_8SivcrEyx3L5F1jcww0fIgVNGl=w1200-h630-p-k-no-nu"
+											src="https://cdn.myanimelist.net/s/common/uploaded_files/1442429646-ad921f883797f47ce86c420e475920f6.jpeg"
 										/>
 									</div>
-									<h5 className="card-title mt-2">Sakshi Chaudhari</h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+									<h5 className="card-title mt-2">
+										<b>Sakshi Chaudhari</b>
+									</h5>
+									<h6 class="card-subtitle mb-2 text-muted">
+										<small>I bully words</small>
+									</h6>
 									<p class="card-text">
-										Some quick example text to build on the card title and make
-										up the bulk of the card's content.
-									</p>
-									<p className="text-center">
-										<Stack direction="row">
-											<a
-												href="https://linkedin.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="LinkedIn"
-													src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://github.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="GitHub"
-													src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-												/>
-											</a>
-											&nbsp;&nbsp;
-											<a
-												href="https://instagram.com"
-												target="_blank"
-												rel="noreferrer"
-											>
-												<Avatar
-													alt="Instagram"
-													src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
-												/>
-											</a>
-										</Stack>
+										<small>
+											Ruthless in business – and proud of it. Don’t get in my
+											way.
+										</small>
 									</p>
 								</div>
 							</div>

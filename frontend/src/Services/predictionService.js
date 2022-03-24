@@ -1,11 +1,11 @@
 import axios from "axios";
-import { PAPI_URL, PREDICT_URL } from "../constants";
+import { PAPI_URL } from "../constants";
 
 class predictionService {
 	postData = (predictionObject) => {
 		const config = {
 			method: "post",
-			url: `${PREDICT_URL}${PAPI_URL}`,
+			url: `${process.env.REACT_APP_PREDICT_URL}${PAPI_URL}`,
 			headers: {
 				"Content-Type": "application/json",
 				"Access-Control-Allow-Origin": "http://127.0.0.1/api",

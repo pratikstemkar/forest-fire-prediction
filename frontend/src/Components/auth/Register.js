@@ -3,7 +3,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Grid, Avatar } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LoginLogo from "../../Assets/img/login8.svg";
 import LoginIcon from "@mui/icons-material/Login";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { DrawerContext } from "../../Contexts/DrawerContext";
@@ -197,7 +196,12 @@ const Register = () => {
 				},
 			}));
 		} else {
-			adduser(state.username, state.password, "USER", " ");
+			adduser(
+				state.username,
+				state.password,
+				"USER",
+				"https://c.tenor.com/aZsmUgu1DJEAAAAC/anime-profile-picture.gif"
+			);
 			navigate("/login");
 			setErrorState((prevErrorState) => ({
 				...prevErrorState,
@@ -244,7 +248,7 @@ const Register = () => {
 						<>
 							<div className="col text-center">
 								<img
-									src={LoginLogo}
+									src="https://i.pinimg.com/originals/6c/18/42/6c18426dc24560eefb233dd79019ca89.gif"
 									alt="Register Logo"
 									style={{
 										width: "60%",

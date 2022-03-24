@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import PropTypes from "prop-types";
 import LinearProgress, {
 	linearProgressClasses,
 } from "@mui/material/LinearProgress";
@@ -32,10 +31,6 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 function LinearProgressWithLabel(props) {
-	const [state, setState] = useState({
-		error: "",
-	});
-
 	return (
 		<>
 			{props.loading ? (
@@ -173,13 +168,13 @@ const FireCount = () => {
 
 	return (
 		<>
-			<div className="card" style={{ height: "calc(100vh - 80px)" }}>
-				<div className="card-body" style={{ padding: "0px" }}>
+			<div style={{ height: "calc(100vh - 80px)" }}>
+				<div style={{ padding: "0px" }}>
 					<MapContainer
 						center={[37.0902, -95.7129]}
 						zoom={4}
 						scrollWheelZoom={true}
-						style={{ height: "calc(100vh - 67px)" }}
+						style={{ height: "calc(100vh - 65px)" }}
 						minZoom={2}
 						maxBounds={bounds}
 						maxBoundsViscosity={1.0}
@@ -213,14 +208,14 @@ const FireCount = () => {
 												<b>Discovery Time: </b>
 												{p.discovery_time}
 												<br />
-												{p.cont_date != null ? (
+												{p.cont_date !== null ? (
 													<>
 														<b>Control Date: </b>
 														{p.cont_date}
 														<br />
 													</>
 												) : null}
-												{p.cont_time != "" ? (
+												{p.cont_time !== "" ? (
 													<>
 														<b>Control Time: </b>
 														{p.cont_time}
@@ -237,7 +232,7 @@ const FireCount = () => {
 												{p.owner_code}
 												<br />
 
-												{p.fire_size_class != null ? (
+												{p.fire_size_class !== null ? (
 													<>
 														<b>Fire Class: </b>
 														{p.fire_size_class}

@@ -29,7 +29,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { API_URL, FSIZE_URL, GFSIZE_URL } from "../../constants";
+import { FSIZE_URL, GFSIZE_URL } from "../../constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -144,7 +144,7 @@ const FireSizePanel = (props) => {
 	// UPDATE FIRE SIZE
 	const handleFireSizeUpdateOpen = (firesizegrade) => {
 		axios
-			.get(`${API_URL}${FSIZE_URL}${firesizegrade}`)
+			.get(`${process.env.REACT_APP_API_URL}${FSIZE_URL}${firesizegrade}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setUpdateFireSize({
@@ -256,7 +256,7 @@ const FireSizePanel = (props) => {
 	// LOAD FireSizeS AT RELOAD
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${GFSIZE_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${GFSIZE_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setFireSizeState((prevFireSizeState) => ({

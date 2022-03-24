@@ -280,7 +280,7 @@ const Dashboard = () => {
 									<CardMedia
 										component="img"
 										height="140"
-										image="https://picsum.photos/id/103/500/500"
+										image="https://www.itl.cat/pngfile/big/317-3177702_anohana-the-flower-we-saw-that-day-wallpaper.jpg"
 										alt="green iguana"
 									/>
 									<CardContent>
@@ -302,7 +302,7 @@ const Dashboard = () => {
 									<CardMedia
 										component="img"
 										height="140"
-										image="https://picsum.photos/id/338/500/500"
+										image="https://c4.wallpaperflare.com/wallpaper/703/640/30/anime-anohana-wallpaper-preview.jpg"
 										alt="green iguana"
 									/>
 									<CardContent>

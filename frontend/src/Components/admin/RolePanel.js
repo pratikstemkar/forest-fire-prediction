@@ -19,7 +19,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { API_URL, GR_URL, ROLE_URL } from "../../constants";
+import { GR_URL, ROLE_URL } from "../../constants";
 
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -131,7 +131,7 @@ const RolePanel = (props) => {
 	// UPDATE ROLE
 	const handleRoleUpdateOpen = (rolename) => {
 		axios
-			.get(`${API_URL}${ROLE_URL}${rolename}`)
+			.get(`${process.env.REACT_APP_API_URL}${ROLE_URL}${rolename}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setUpdateRole({
@@ -236,7 +236,7 @@ const RolePanel = (props) => {
 	// LOAD ROLES AT RELOAD
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${GR_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${GR_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setRoleState((prevRoleState) => ({

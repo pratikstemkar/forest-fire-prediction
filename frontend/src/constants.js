@@ -1,5 +1,3 @@
-export const API_URL = "http://localhost:8081";
-
 // Auth URLs
 export const LOGIN_URL = "/api/security/login";
 export const REFRESH_URL = "/api/security/token/refresh";
@@ -74,5 +72,4 @@ export const DATA_UPDATE_URL = "/api/data/update";
 export const DATA_DELETE_URL = "/api/data/delete/";
 
 // Predict API
-export const PREDICT_URL = "http://localhost:5000";
 export const PAPI_URL = "/api";

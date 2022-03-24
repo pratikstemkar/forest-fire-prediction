@@ -376,15 +376,16 @@ const Navbar = () => {
 					<Divider style={{ color: "white" }} />
 					<List style={{ color: "white" }}>
 						{drawerLinks.map((dl) => (
-							<ListItem button key={dl.name} onClick={toggleDrawer(false)}>
-								<ListItemIcon sx={{ color: "white" }}>{dl.icon}</ListItemIcon>
-								<Link
-									to={dl.link}
-									style={{ textDecoration: "none", color: "white" }}
-								>
+							<Link
+								to={dl.link}
+								style={{ textDecoration: "none", color: "white" }}
+							>
+								<ListItem button key={dl.name} onClick={toggleDrawer(false)}>
+									<ListItemIcon sx={{ color: "white" }}>{dl.icon}</ListItemIcon>
+
 									<ListItemText primary={dl.name} />
-								</Link>
-							</ListItem>
+								</ListItem>
+							</Link>
 						))}
 					</List>
 				</Box>

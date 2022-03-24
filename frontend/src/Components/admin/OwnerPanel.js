@@ -29,7 +29,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { API_URL, GOWNER_URL, OWNER_URL } from "../../constants";
+import { GOWNER_URL, OWNER_URL } from "../../constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -124,18 +124,20 @@ const OwnerPanel = (props) => {
 
 	// UPDATE Owner
 	const handleOwnerUpdateOpen = (Ownername) => {
-		axios.get(`${API_URL}${OWNER_URL}${Ownername}`).then(function (response) {
-			if (response.status === 200) {
-				setUpdateOwner({
-					Ownerid: response.data.id,
-					Ownername: response.data.name,
-					Ownerimg: response.data.img,
-				});
-				console.log(response.data);
-			} else {
-				console.log("error");
-			}
-		});
+		axios
+			.get(`${process.env.REACT_APP_API_URL}${OWNER_URL}${Ownername}`)
+			.then(function (response) {
+				if (response.status === 200) {
+					setUpdateOwner({
+						Ownerid: response.data.id,
+						Ownername: response.data.name,
+						Ownerimg: response.data.img,
+					});
+					console.log(response.data);
+				} else {
+					console.log("error");
+				}
+			});
 		setOpenOwnerUpdate(true);
 		setOwnerState((prevOwnerState) => ({
 			...prevOwnerState,
@@ -219,7 +221,7 @@ const OwnerPanel = (props) => {
 	// LOAD OwnerS AT RELOAD
 	useEffect(() => {
 		axios
-			.get(`${API_URL}${GOWNER_URL}`)
+			.get(`${process.env.REACT_APP_API_URL}${GOWNER_URL}`)
 			.then(function (response) {
 				if (response.status === 200) {
 					setOwnerState((prevOwnerState) => ({
