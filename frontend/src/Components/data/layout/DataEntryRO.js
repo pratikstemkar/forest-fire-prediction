@@ -93,7 +93,7 @@ function DataEntryRO(props) {
 				<TabPanel value={value} index={0} dir={theme.direction}>
 					<DataEntryForm />
 				</TabPanel>
-				<TabPanel value={value} index={2} dir={theme.direction}>
+				<TabPanel value={value} index={1} dir={theme.direction}>
 					<SubmittedDataEntryTable />
 				</TabPanel>
 			</SwipeableViews>
